@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Become. — Technology that transforms businesses</title>
+<meta name="description" content="Become. builds software, AI, SaaS products and digital experiences that help businesses become what they are meant to be.">
+<meta name="theme-color" content="#08080a">
+<meta name="color-scheme" content="dark">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Become.">
+<meta property="og:title" content="Become. — Technology that transforms businesses">
+<meta property="og:description" content="Software, artificial intelligence, SaaS products and digital experiences, engineered for businesses that intend to become something else.">
+<meta property="og:image" content="assets/img/hero-flow.jpg">
+<meta property="og:locale" content="en">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Become. — Technology that transforms businesses">
+<meta name="twitter:description" content="Software, AI, SaaS products and digital experiences for businesses that intend to become something else.">
+<meta name="twitter:image" content="assets/img/hero-flow.jpg">
+
+<link rel="icon" href="assets/Become..png" type="image/png">
+<link rel="apple-touch-icon" href="assets/Become..png">
+
+<!-- Type -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700;1,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/chrome.css">
+<link rel="stylesheet" href="css/sections-a.css">
+<link rel="stylesheet" href="css/sections-b.css">
+<link rel="stylesheet" href="css/demos.css">
+
+<script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Become.",
+  "alternateName": "Become",
+  "url": "https://become.example/",
+  "logo": "assets/Become..png",
+  "slogan": "Technology that transforms businesses.",
+  "description": "Become. builds software, artificial intelligence, SaaS products, automation and digital experiences for businesses.",
+  "knowsAbout": [
+    "Software Engineering","Artificial Intelligence","SaaS","Automation",
+    "Cloud Infrastructure","Computer Vision","Mobile Applications","Brand Growth"
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "SoftwareApplication", "name": "Become LivingOS", "applicationCategory": "BusinessApplication", "operatingSystem": "Web" } }
+  ]
+}
+</script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ════ BOOT ════════════════════════════════════════════════ -->
+<div class="boot" id="boot" role="status" aria-label="Loading">
+  <div class="boot__inner">
+    <div class="boot__word" aria-hidden="true">
+      <span style="--i:0ms">B</span><span style="--i:55ms">e</span><span style="--i:110ms">c</span><span style="--i:165ms">o</span><span style="--i:220ms">m</span><span style="--i:275ms">e</span><span style="--i:330ms">.</span>
+    </div>
+    <div class="boot__bar"><i id="bootBar"></i></div>
+    <div class="boot__meta">
+      <span>Loading</span>
+      <span id="bootPct">0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CHROME ══════════════════════════════════════════════ -->
+<div class="grain" aria-hidden="true"></div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__ring"><span class="cursor__label" id="cursorLabel">Drag</span></div>
+  <div class="cursor__dot"></div>
+</div>
+
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#top" aria-label="Become. — home">
+      <img class="nav__logo" src="assets/Become..png" alt="Become." width="140" height="26">
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <span class="nav__pill" id="navPill" aria-hidden="true"></span>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn nav__cta" href="#contact" data-magnetic>
+        <span>Start a transformation</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" type="button"
+              aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true" data-native-scroll>
+  <div class="menu__bg" aria-hidden="true"></div>
+  <div></div>
+  <nav class="menu__body" id="menuBody" aria-label="Mobile"></nav>
+  <div class="menu__foot">
+    <span>Technology that transforms businesses.</span>
+    <a class="link" href="#contact" data-menu-close>
+      <span>Start a transformation</span>
+      <span class="link__arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</div>
+
+<div class="page">
+<main id="main">
+
+<!-- ════ 01 · HERO ═══════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="hero__stage" aria-hidden="true">
+    <div class="hero__media" data-parallax="0.16">
+      <!-- Drop a looping film at assets/video/hero.mp4 and this
+           <video> takes over from the still automatically. -->
+      <video id="heroVideo" playsinline muted loop preload="none"
+             poster="assets/img/hero-flow.jpg" hidden></video>
+      <img src="assets/img/hero-flow.jpg" alt="" width="2000" height="1333" fetchpriority="high" decoding="async">
+    </div>
+    <canvas class="hero__canvas" id="heroCanvas"></canvas>
+    <div class="hero__veil"></div>
+  </div>
+
+  <div class="hero__body">
+    <p class="eyebrow" data-reveal="fade">Technology that transforms businesses</p>
+
+    <h1 class="hero__statement">
+      <span class="hero__line hero__line--fixed"><span>Become</span></span>
+      <span class="hero__line hero__rotator" id="rotator" aria-hidden="true"></span>
+      <span class="visually-hidden">
+        Become visible. Become connected. Become relevant. Become intelligent.
+        Become digital. Become automated. Become future-ready. Become extraordinary.
+      </span>
+    </h1>
+
+    <div class="hero__support">
+      <p class="hero__lede" data-reveal="fade" style="--reveal-delay:120ms">
+        We build software, AI and digital experiences that help businesses
+        become what they are meant to be.
+      </p>
+      <div class="hero__actions" data-reveal="fade" style="--reveal-delay:220ms">
+        <a class="btn" href="#contact" data-magnetic>
+          <span class="btn__dot" aria-hidden="true"></span>
+          <span>Start a transformation</span>
+        </a>
+        <a class="btn btn--ghost" href="#products" data-magnetic>
+          <span>See Become LivingOS</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__rail">
+    <div class="hero__rail-inner">
+      <ul class="hero__facts" id="heroFacts"></ul>
+      <a class="hero__cue" href="#manifesto" aria-label="Scroll to read more">
+        <span class="hero__cue-track" aria-hidden="true"><i></i></span>
+        <span>Scroll</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 02 · TICKER ═════════════════════════════════════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__row" data-marquee="-0.45"><div class="ticker__set" id="tickerA"></div></div>
+  <div class="ticker__row ticker__row--b" data-marquee="0.3"><div class="ticker__set" id="tickerB"></div></div>
+</div>
+
+<!-- ════ 03 · MANIFESTO ══════════════════════════════════════ -->
+<section class="section is-light manifesto" id="manifesto" aria-labelledby="manifesto-h">
+  <div class="shell">
+    <div class="manifesto__grid">
+      <aside class="manifesto__aside">
+        <p class="eyebrow"><span class="eyebrow__num">01</span> Manifesto</p>
+        <p>A point of view, written before the first line of code.</p>
+      </aside>
+
+      <div>
+        <h2 id="manifesto-h" class="manifesto__text lit-text" data-lit>
+          <p>Businesses do not need more software. They need clarity. They need speed. They need automation. They need growth. They need technology that actually solves problems.</p>
+        </h2>
+
+        <div class="manifesto__break">
+          <div class="manifesto__need" data-reveal="fade">
+            <b>Clarity</b>
+            <span>Knowing what is true today, without asking four people first.</span>
+          </div>
+          <div class="manifesto__need" data-reveal="fade" style="--reveal-delay:110ms">
+            <b>Speed</b>
+            <span>Removing the hours between deciding something and it being done.</span>
+          </div>
+          <div class="manifesto__need" data-reveal="fade" style="--reveal-delay:220ms">
+            <b>Growth</b>
+            <span>Capacity that increases without the headcount increasing with it.</span>
+          </div>
+        </div>
+
+        <p class="manifesto__close" data-reveal="rise">
+          That is why <em>Become</em> exists.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 04 · CONVERGENCE ════════════════════════════════════ -->
+<section class="converge" id="converge" aria-labelledby="converge-h">
+  <div class="converge__pin">
+    <div class="converge__bg" aria-hidden="true">
+      <img src="assets/img/atmos-wave.jpg" alt="" loading="lazy" decoding="async" width="1800" height="1200">
+    </div>
+    <div class="converge__veil" aria-hidden="true"></div>
+
+    <div class="converge__field" id="convergeField" aria-hidden="true"></div>
+    <div class="converge__halo" id="convergeHalo" aria-hidden="true"></div>
+
+    <div class="converge__core">
+      <h2 id="converge-h" class="converge__mark">Become<i>.</i></h2>
+      <p class="converge__sub">Nine words. One outcome.</p>
+      <span class="visually-hidden">
+        Visible. Automated. Connected. Intelligent. Scalable. Digital.
+        Powerful. Trusted. Modern. All of it converges on one idea: Become.
+      </span>
+    </div>
+
+    <div class="converge__progress" aria-hidden="true">
+      <span>Transformation</span>
+      <span class="converge__progress-track" id="convergeTrack"><i></i></span>
+      <span id="convergePct">0%</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 05 · SOLUTIONS ══════════════════════════════════════ -->
+<section class="section solutions" id="solutions" aria-labelledby="solutions-h">
+  <div class="pinstripes" aria-hidden="true"></div>
+  <div class="shell u-relative">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">02</span> Solutions</p>
+        <h2 id="solutions-h" class="headline" data-reveal="rise" style="margin-top:1rem">
+          Solutions<span class="ember-text">.</span>
+        </h2>
+      </div>
+      <p class="prose" data-reveal="fade" style="--reveal-delay:140ms">
+        Seven capabilities, one company. Most work uses more than one of
+        them — which is the point of keeping them under the same roof.
+      </p>
+    </header>
+
+    <div class="solutions__layout">
+      <div class="solutions__index" id="solutionsIndex"></div>
+
+      <div class="solutions__stage" aria-hidden="true">
+        <div class="solutions__pane" id="solutionsPane"></div>
+        <div class="solutions__meter" id="solutionsMeter"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 06 · ARTIFICIAL INTELLIGENCE ════════════════════════ -->
+<section class="section ai" id="ai" aria-labelledby="ai-h">
+  <div class="ai__aura" aria-hidden="true">
+    <img src="assets/img/atmos-sphere.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1067">
+  </div>
+
+  <div class="shell u-relative">
+    <header class="section__head section__head--split ai__head">
+      <div>
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">03</span> Artificial Intelligence</p>
+        <h2 id="ai-h" class="ai__title" data-reveal="rise" style="margin-top:1rem">
+          Intelligence,<br><em>built for business.</em>
+        </h2>
+      </div>
+      <p class="prose" data-reveal="fade" style="--reveal-delay:140ms">
+        Not a chatbot bolted onto a website. Systems that see, listen, read
+        and predict — wired into the operations that already pay the bills.
+      </p>
+    </header>
+
+    <!-- Live demo console -->
+    <div class="console" data-reveal="scale">
+      <div class="console__bar">
+        <span class="console__lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="console__path">become / intelligence / production</span>
+        <span class="console__status"><i aria-hidden="true"></i> Simulated</span>
+      </div>
+
+      <div class="console__body">
+        <div class="console__nav" role="tablist" aria-label="AI capability demonstrations" id="consoleNav"></div>
+        <div class="console__view" id="consoleView"></div>
+      </div>
+    </div>
+
+    <!-- Capability cards -->
+    <div class="cap-grid" id="capGrid"></div>
+
+    <!-- Outcomes -->
+    <div class="ai__outcomes" id="aiOutcomes"></div>
+  </div>
+</section>
+
+<!-- ════ 07 · PRODUCTS ═══════════════════════════════════════ -->
+<section class="section is-light products" id="products" aria-labelledby="products-h">
+  <div class="shell">
+    <header class="products__flag">
+      <div>
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">04</span> Products</p>
+        <h2 id="products-h" class="products__title" data-reveal="rise" style="margin-top:1rem">
+          Become <i>LivingOS</i>
+        </h2>
+      </div>
+      <div data-reveal="fade" style="--reveal-delay:140ms">
+        <span class="chip chip--live"><i aria-hidden="true"></i> Live product</span>
+        <p class="prose" style="margin-top:1rem">
+          An AI-powered operating system for hostels, hotels, PGs and modern
+          living spaces. Rooms, residents, money and operations in one place
+          that updates itself.
+        </p>
+      </div>
+    </header>
+
+    <!-- Device showcase -->
+    <div class="showcase" data-reveal="scale">
+      <div class="showcase__inner">
+        <div class="device" id="device">
+          <div class="device__screen" id="deviceScreen">
+            <div class="device__glass">
+              <div class="os" id="osUi"></div>
+            </div>
+          </div>
+          <div class="device__base"></div>
+
+          <div class="phone" aria-hidden="true">
+            <div class="phone__glass">
+              <div class="phone__notch"></div>
+              <div class="os-m" id="osMobile"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="products__rail" id="productUses"></div>
+
+    <!-- The family -->
+    <div class="constellation">
+      <div class="constellation__head">
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">05</span> The family</p>
+        <h3 class="subhead" data-reveal="rise" style="margin-top:.75rem">
+          One architecture. Many industries.
+        </h3>
+        <p class="prose" data-reveal="fade">
+          LivingOS is the first. The same core — records, money, operations,
+          intelligence — is being shaped for the businesses around it.
+        </p>
+      </div>
+
+      <div class="orbit" id="orbit">
+        <div class="orbit__rings" aria-hidden="true">
+          <span class="orbit__ring"></span>
+          <span class="orbit__ring"></span>
+          <span class="orbit__ring"></span>
+        </div>
+        <div class="orbit__core" data-reveal="scale">
+          <b>Become<span class="ember-text">.</span></b>
+          <span>Core platform</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 08 · SELECTED WORK ══════════════════════════════════ -->
+<section class="section work" id="work" aria-labelledby="work-h">
+  <div class="shell">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">06</span> Selected Work</p>
+        <h2 id="work-h" class="headline" data-reveal="rise" style="margin-top:1rem">
+          What transformation<br>actually looks like.
+        </h2>
+      </div>
+      <p class="prose" data-reveal="fade" style="--reveal-delay:140ms">
+        Every project below is a change of state — something a business could
+        not do on Monday and could do by the end of the quarter.
+      </p>
+    </header>
+  </div>
+
+  <div class="shell">
+    <div class="work__viewport" id="workViewport" tabindex="0"
+         role="region" aria-label="Selected work, scrollable">
+      <div class="work__track" id="workTrack"></div>
+    </div>
+
+    <div class="carousel-bar">
+      <span class="drag-hint">Drag · scroll · arrow keys</span>
+      <span class="carousel-bar__track">
+        <span class="carousel-bar__thumb" id="workThumb"></span>
+      </span>
+      <span class="carousel-bar__btns">
+        <button class="circ" id="workPrev" type="button" aria-label="Previous project">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="circ" id="workNext" type="button" aria-label="Next project">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 09 · INDUSTRIES ═════════════════════════════════════ -->
+<section class="section industries" id="industries" aria-labelledby="industries-h">
+  <div class="bloom" style="width:520px;height:520px;top:-160px;right:-120px" aria-hidden="true"></div>
+  <div class="shell u-relative">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">07</span> Industries</p>
+        <h2 id="industries-h" class="headline" data-reveal="rise" style="margin-top:1rem">
+          Where we work<span class="ember-text">.</span>
+        </h2>
+      </div>
+      <p class="prose" data-reveal="fade" style="--reveal-delay:140ms">
+        Different floors, same problem underneath: information that lives in
+        too many places and work that repeats itself.
+      </p>
+    </header>
+
+    <div class="mosaic" id="mosaic"></div>
+  </div>
+</section>
+
+<!-- ════ 10 · TECHNOLOGY ═════════════════════════════════════ -->
+<section class="section tech" id="tech" aria-labelledby="tech-h">
+  <div class="shell">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">08</span> Technology</p>
+        <h2 id="tech-h" class="headline" data-reveal="rise" style="margin-top:1rem">
+          The stack underneath<span class="ember-text">.</span>
+        </h2>
+      </div>
+      <p class="prose" data-reveal="fade" style="--reveal-delay:140ms">
+        Tools are a means, never the story. These are the ones we reach for
+        because they hold up in production.
+      </p>
+    </header>
+  </div>
+
+  <div class="tech__marquee" aria-hidden="true">
+    <div class="tech__row" data-marquee="-0.35"><div class="tech__set" id="techA"></div></div>
+    <div class="tech__row" data-marquee="0.28"><div class="tech__set" id="techB"></div></div>
+  </div>
+
+  <div class="shell">
+    <ul class="visually-hidden" id="techList"></ul>
+    <div class="tech__foot" id="techNotes"></div>
+  </div>
+</section>
+
+<!-- ════ 11 · WHY BECOME ═════════════════════════════════════ -->
+<section class="section is-light why" id="why" aria-labelledby="why-h">
+  <div class="shell">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">09</span> Why Become</p>
+        <h2 id="why-h" class="headline" data-reveal="rise" style="margin-top:1rem">
+          Three chapters<span class="ember-text">.</span>
+        </h2>
+      </div>
+      <p class="prose" data-reveal="fade" style="--reveal-delay:140ms">
+        How the work is done matters more than the list of things we can do.
+      </p>
+    </header>
+
+    <div class="why__stack" id="whyStack"></div>
+  </div>
+</section>
+
+<!-- ════ 12 · PROCESS ════════════════════════════════════════ -->
+<section class="section process" id="process" aria-labelledby="process-h">
+  <div class="shell">
+    <header class="section__head section__head--split">
+      <div>
+        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">10</span> Process</p>
+        <h2 id="process-h" class="headline" data-reveal="rise" style="margin-top:1rem">
+          How it goes<span class="ember-text">.</span>
+        </h2>
+      </div>
+      <p class="prose" data-reveal="fade" style="--reveal-delay:140ms">
+        Five stages, run collaboratively. You are in the room for all of them,
+        and the shape adapts to what we find.
+      </p>
+    </header>
+
+    <div class="track" id="track">
+      <span class="track__line" id="trackLine" aria-hidden="true"><i></i></span>
+      <ol class="track__steps" id="trackSteps"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 13 · CONTACT ════════════════════════════════════════ -->
+<section class="section contact" id="contact" aria-labelledby="contact-h">
+  <div class="contact__bg" aria-hidden="true">
+    <img src="assets/img/atmos-curve.jpg" alt="" loading="lazy" decoding="async" width="1600" height="1067">
+  </div>
+
+  <div class="shell contact__grid">
+    <div class="contact__pitch">
+      <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">11</span> Contact</p>
+      <h2 id="contact-h" data-reveal="rise" style="margin-top:1rem">
+        Tell us what should<br>be <em>different</em>.
+      </h2>
+      <p class="prose" data-reveal="fade">
+        Bring the problem, not the specification. If software is the wrong
+        answer we will say so — and if it is the right one, you will have a
+        clear plan before anyone writes code.
+      </p>
+
+      <dl class="contact__details" id="contactDetails"></dl>
+
+      <div class="contact__socials" id="contactSocials"></div>
+    </div>
+
+    <form class="form" id="contactForm" novalidate data-reveal="scale">
+      <p class="form__status" id="formStatus" role="status"></p>
+
+      <div class="form__row form__row--2">
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Jane Mehta" required>
+          <span class="field__error" data-error aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required>
+          <span class="field__error" data-error aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="form__row form__row--2">
+        <div class="field">
+          <label for="f-company">Company</label>
+          <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Company name">
+          <span class="field__error" data-error aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="f-interest">What do you need</label>
+          <select id="f-interest" name="interest">
+            <option>Software product</option>
+            <option>Artificial intelligence</option>
+            <option>SaaS platform</option>
+            <option>Website or web app</option>
+            <option>Mobile application</option>
+            <option>Automation</option>
+            <option>Cloud infrastructure</option>
+            <option>Brand and growth</option>
+            <option>Not sure yet</option>
+          </select>
+          <span class="field__error" data-error aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-message">What should be different?</label>
+        <textarea id="f-message" name="message" placeholder="The thing that is slow, manual, invisible or breaking." required></textarea>
+        <span class="field__error" data-error aria-live="polite"></span>
+      </div>
+
+      <div class="form__foot">
+        <p class="form__note">
+          This form opens your email client. Connect it to a backend or form
+          service when the contact details are final.
+        </p>
+        <button class="btn" type="submit" data-magnetic>
+          <span class="btn__dot" aria-hidden="true"></span>
+          <span>Send it over</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ════ 14 · FINALE ═════════════════════════════════════════ -->
+<section class="finale" id="finale" aria-labelledby="finale-h">
+  <div class="finale__media" aria-hidden="true" data-parallax="0.12">
+    <!-- Drop a looping film at assets/video/finale.mp4 to replace the still. -->
+    <video id="finaleVideo" playsinline muted loop preload="none"
+           poster="assets/img/accent-tunnel.jpg" hidden></video>
+    <img src="assets/img/accent-tunnel.jpg" alt="" loading="lazy" decoding="async" width="1800" height="1200">
+  </div>
+  <div class="finale__veil" aria-hidden="true"></div>
+
+  <div class="finale__body">
+    <h2 id="finale-h" class="finale__mark" data-reveal="scale">Become<i>.</i></h2>
+    <p class="finale__next" data-reveal="rise" style="--reveal-delay:120ms">
+      Become <em>what is next</em>.
+    </p>
+    <p class="finale__sub" data-reveal="fade" style="--reveal-delay:220ms">
+      Every business is on its way to being something else. The only question
+      is whether that happens on purpose.
+    </p>
+    <div class="finale__actions" data-reveal="fade" style="--reveal-delay:300ms">
+      <a class="btn finale__btn" href="#contact" data-magnetic>
+        <span class="btn__dot" aria-hidden="true"></span>
+        <span>Let's build together</span>
+      </a>
+      <a class="btn btn--ghost finale__btn" href="#products" data-magnetic>
+        <span>Explore the products</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ════ FOOTER ══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img class="footer__logo" src="assets/Become..png" alt="Become." width="180" height="34">
+        <p class="footer__tag">Technology that transforms businesses.</p>
+        <a class="link" href="#contact" style="justify-self:start">
+          <span>Start a transformation</span>
+          <span class="link__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <nav class="footer__col" aria-label="Products">
+        <h3>Products</h3>
+        <ul id="footProducts"></ul>
+      </nav>
+      <nav class="footer__col" aria-label="Solutions">
+        <h3>Solutions</h3>
+        <ul id="footSolutions"></ul>
+      </nav>
+      <nav class="footer__col" aria-label="Company">
+        <h3>Company</h3>
+        <ul id="footCompany"></ul>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <span>&copy; <span id="year">2026</span> Become. All rights reserved.</span>
+      <nav class="footer__legal" aria-label="Legal">
+        <a href="#top">Privacy</a>
+        <a href="#top">Terms</a>
+        <a href="#top">Cookies</a>
+      </nav>
+    </div>
+
+    <p class="footer__mark" aria-hidden="true">Become.</p>
+  </div>
+</footer>
+</div>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M8 13V3m0 0L3.5 7.5M8 3l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<!-- Scripts: classic, ordered, no build step required. -->
+<script src="js/data.js"></script>
+<script src="js/motion.js"></script>
+<script src="js/demos.js"></script>
+<script src="js/sections.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+
