@@ -826,24 +826,39 @@ window.SECTIONS = (function () {
       }
 
       var to = D.contact.email.value;
-      var subject = "New enquiry — " + qs("#f-interest").value;
-      var body =
-        "Name: " + qs("#f-name").value +
-        "\nEmail: " + qs("#f-email").value +
-        "\nCompany: " + (qs("#f-company").value || "—") +
-        "\nInterest: " + qs("#f-interest").value +
-        "\n\n" + qs("#f-message").value;
+      var payload = {
+        name: qs("#f-name").value,
+        email: qs("#f-email").value,
+        company: qs("#f-company").value || "",
+        interest: qs("#f-interest").value,
+        message: qs("#f-message").value
+      };
 
-      window.location.href =
-        "mailto:" + to +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-
+      var submitBtn = qs("button[type=submit]", f);
+      if (submitBtn) submitBtn.disabled = true;
       if (status) {
-        status.textContent =
-          "Opening your email client. If nothing happens, write to " + to + ".";
+        status.textContent = "Sending…";
         status.classList.add("is-on");
       }
+
+      fetch("https://script.google.com/macros/s/AKfycbywHnZ0hz7-lbGBEPc2u1glh-pJg_xjjZ8po5gyvmTcVKF3v0QcbvNG3VSIBO8EmRhwVg/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      })
+        .then(function () {
+          if (status) status.textContent = "Thanks — we'll reply within a day.";
+          f.reset();
+        })
+        .catch(function () {
+          if (status)
+            status.textContent =
+              "Something went wrong. Please write to us directly at " + to + ".";
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 
