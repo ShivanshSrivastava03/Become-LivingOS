@@ -1,0 +1,1110 @@
+/* ============================================================
+   BECOME. — Dedicated pages
+   Shared furniture for the five solution pages. Built from the
+   same tokens and primitives as the homepage, so nothing drifts.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Page hero
+   ------------------------------------------------------------ */
+
+.phero {
+  position: relative;
+  min-height: 82svh;
+  min-height: 82vh;
+  display: grid;
+  align-content: end;
+  overflow: hidden;
+  background: var(--void);
+  color: var(--paper);
+  padding-top: calc(var(--nav-h) + var(--s-5));
+  padding-bottom: var(--s-6);
+  isolation: isolate;
+}
+
+.phero__media {
+  position: absolute;
+  inset: -6% -3%;
+  z-index: 0;
+}
+
+.phero__media img,
+.phero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+.phero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+      110% 80% at 80% 8%,
+      rgba(255, 92, 43, 0.2) 0%,
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.86) 0%,
+      rgba(8, 8, 10, 0.42) 34%,
+      rgba(8, 8, 10, 0.78) 74%,
+      var(--void) 100%
+    );
+}
+
+.phero__body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  gap: var(--s-3);
+}
+
+.phero__title {
+  font-size: var(--t-display);
+  font-weight: 700;
+  letter-spacing: var(--tr-display);
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.phero__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ember);
+}
+
+.phero__sub {
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  line-height: 1.55;
+  font-weight: 350;
+  color: rgba(245, 243, 239, 0.82);
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.phero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+  margin-top: var(--s-2);
+}
+
+/* Route back to the homepage index of solutions. */
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ash);
+  transition: color var(--d-fast) var(--ease-out);
+}
+
+.crumb:hover {
+  color: var(--ember);
+}
+
+/* ------------------------------------------------------------
+   Section furniture
+   ------------------------------------------------------------ */
+
+.band__head {
+  display: grid;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+  max-width: 62ch;
+}
+
+.band__title {
+  font-size: clamp(1.9rem, 4.6vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: var(--tr-display);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.band__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ember);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45em 0.85em;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  color: var(--fg-dim);
+}
+
+/* ------------------------------------------------------------
+   Media cards — the workhorse of every page
+   ------------------------------------------------------------ */
+
+.mgrid {
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 620px) {
+  .mgrid--2,
+  .mgrid--3,
+  .mgrid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .mgrid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .mgrid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.mcard {
+  position: relative;
+  display: block;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--ink-2);
+  isolation: isolate;
+  min-height: 220px;
+  aspect-ratio: 4 / 3.1;
+}
+
+.mcard--tall {
+  aspect-ratio: 4 / 5;
+}
+
+.mcard--wide {
+  aspect-ratio: 16 / 8;
+}
+
+/* Edge-to-edge band. Height is driven, so the ratio has to let go. */
+.mcard--bleed {
+  aspect-ratio: auto;
+  width: 100%;
+  border-radius: 0;
+  min-height: min(60vh, 520px);
+}
+
+.mcard__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.mcard__media img,
+.mcard__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 1.4s var(--ease-out), filter 0.9s var(--ease-out);
+}
+
+.mcard:hover .mcard__media img,
+.mcard:hover .mcard__media video {
+  transform: scale(1.09);
+}
+
+.mcard__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.1) 0%,
+      rgba(8, 8, 10, 0.34) 46%,
+      rgba(8, 8, 10, 0.9) 100%
+    ),
+    radial-gradient(100% 70% at 82% 0%, rgba(255, 92, 43, 0), transparent 60%);
+  transition: background 0.8s var(--ease-out);
+}
+
+.mcard:hover .mcard__veil {
+  background: linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.04) 0%,
+      rgba(8, 8, 10, 0.28) 44%,
+      rgba(8, 8, 10, 0.88) 100%
+    ),
+    radial-gradient(
+      100% 70% at 82% 0%,
+      rgba(255, 92, 43, 0.26),
+      transparent 62%
+    );
+}
+
+.mcard__body {
+  position: absolute;
+  z-index: 2;
+  inset: auto var(--s-3) var(--s-3);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.mcard__num {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.14em;
+  color: var(--ember);
+}
+
+.mcard__name {
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.06;
+  color: var(--paper);
+}
+
+.mcard__note {
+  font-size: var(--t-mini);
+  line-height: 1.5;
+  color: rgba(245, 243, 239, 0.72);
+  max-width: 34ch;
+}
+
+/* ------------------------------------------------------------
+   Split: a slab of media beside a slab of words
+   ------------------------------------------------------------ */
+
+.split {
+  display: grid;
+  gap: var(--s-4);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--s-6);
+  }
+  .split--flip .split__media {
+    order: 2;
+  }
+}
+
+.split + .split {
+  margin-top: var(--s-7);
+}
+
+.split__media {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--ink-2);
+  aspect-ratio: 16 / 10.5;
+  box-shadow: var(--lift-3);
+}
+
+.split__media img,
+.split__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.split__body {
+  display: grid;
+  gap: var(--s-3);
+  align-content: center;
+}
+
+.split__num {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.split__title {
+  font-size: clamp(1.7rem, 3.6vw, 3rem);
+  font-weight: 650;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.02;
+}
+
+.split__copy {
+  font-size: var(--t-sm);
+  line-height: 1.6;
+  color: var(--fg-dim);
+  max-width: 46ch;
+}
+
+/* ------------------------------------------------------------
+   Horizontal rail — drag / scroll / arrow keys
+   ------------------------------------------------------------ */
+
+.rail {
+  display: flex;
+  gap: var(--s-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--s-2);
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+}
+
+.rail > * {
+  flex: 0 0 auto;
+  width: min(78vw, 340px);
+  scroll-snap-align: start;
+}
+
+.drag-hint {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ash-dim);
+  flex: none;
+}
+
+@media (max-width: 620px) {
+  .drag-hint {
+    display: none;
+  }
+}
+
+.rail-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-3);
+}
+
+.rail-bar__track {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.rail-bar__thumb {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: var(--w, 30%);
+  transform: translateX(var(--x, 0%));
+  background: var(--ember);
+  border-radius: 2px;
+}
+
+.rail-bar__btns {
+  display: flex;
+  gap: 0.5rem;
+  flex: none;
+}
+
+.circ {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  color: var(--fg);
+  transition: background-color var(--d-fast) var(--ease-out),
+    border-color var(--d-fast) var(--ease-out), opacity var(--d-fast) var(--ease-out);
+}
+
+.circ:hover:not(:disabled) {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: #fff;
+}
+
+.circ:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------
+   Phone mock-up — for the mobile application page
+   ------------------------------------------------------------ */
+
+.phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(0.75rem, 3vw, 2.5rem);
+  perspective: 1400px;
+}
+
+/* Below the tablet breakpoint only the animating phone survives —
+   three of them would push the page sideways. */
+@media (max-width: 719px) {
+  .phones > .pmock:not(.pmock--lift) {
+    display: none;
+  }
+  .pmock--lift {
+    transform: none;
+  }
+  .phones > .pmock {
+    width: min(62vw, 240px);
+  }
+}
+
+.pmock {
+  position: relative;
+  width: clamp(150px, 24vw, 250px);
+  aspect-ratio: 9 / 19;
+  border-radius: clamp(20px, 3vw, 34px);
+  padding: 6px;
+  background: linear-gradient(160deg, #2a2a31, #101014);
+  box-shadow: var(--lift-3), 0 0 0 1px rgba(255, 255, 255, 0.07) inset;
+  flex: none;
+}
+
+.pmock--lift {
+  transform: translateY(clamp(-2.5rem, -4vw, -1rem));
+}
+
+.pmock__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.pmock__screen img,
+.pmock__screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pmock__notch {
+  position: absolute;
+  z-index: 3;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34%;
+  height: 12px;
+  border-radius: var(--r-pill);
+  background: #0a0a0c;
+}
+
+/* Stacked app screens that cross-fade inside one phone. */
+.pmock__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out);
+}
+
+.pmock__slide.is-on {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------
+   Flow — YOUR IDEA → DESIGN → APP
+   ------------------------------------------------------------ */
+
+.flow {
+  display: grid;
+  gap: var(--s-3);
+  align-items: stretch;
+}
+
+@media (min-width: 760px) {
+  .flow {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+.flow__step {
+  position: relative;
+  display: grid;
+  gap: 0.5rem;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  padding: var(--s-4) var(--s-3);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  opacity: 0.45;
+  transform: translateY(8px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out),
+    border-color 0.7s var(--ease-out);
+}
+
+.flow__step.is-on {
+  opacity: 1;
+  transform: none;
+  border-color: rgba(255, 92, 43, 0.5);
+}
+
+.flow__step b {
+  font-size: var(--t-md);
+  font-weight: 650;
+  letter-spacing: var(--tr-tight);
+}
+
+.flow__step span {
+  font-size: var(--t-mini);
+  color: var(--fg-dim);
+  max-width: 26ch;
+}
+
+.flow__arrow {
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  color: var(--ember);
+  opacity: 0.5;
+  transition: opacity 0.7s var(--ease-out);
+}
+
+.flow__arrow.is-on {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------
+   Feature list — compact rows of capability
+   ------------------------------------------------------------ */
+
+.flist {
+  display: grid;
+  gap: var(--s-4);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--s-4);
+}
+
+@media (min-width: 700px) {
+  .flist--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .flist--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .flist--5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 700px) and (max-width: 999px) {
+  .flist--3,
+  .flist--5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fitem {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.fitem b {
+  font-size: var(--t-sm);
+  font-weight: 600;
+  letter-spacing: var(--tr-snug);
+}
+
+.fitem span {
+  font-size: var(--t-mini);
+  color: var(--fg-dim);
+  line-height: 1.55;
+}
+
+/* ------------------------------------------------------------
+   Status chip — used where something is not shipped yet
+   ------------------------------------------------------------ */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.5em 1em;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(255, 92, 43, 0.45);
+  background: rgba(255, 92, 43, 0.1);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--amber);
+  width: max-content;
+}
+
+.status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 0 0 rgba(255, 92, 43, 0.6);
+  animation: pulse-build 2.4s ease-out infinite;
+}
+
+@keyframes pulse-build {
+  to {
+    box-shadow: 0 0 0 9px rgba(255, 92, 43, 0);
+  }
+}
+
+.note {
+  font-size: var(--t-mini);
+  color: var(--fg-dim);
+  line-height: 1.6;
+  max-width: 62ch;
+}
+
+/* ------------------------------------------------------------
+   Closing call to action
+   ------------------------------------------------------------ */
+
+.cta-band {
+  position: relative;
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cta-band__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: var(--s-3);
+  justify-items: center;
+  text-align: center;
+}
+
+.cta-band__title {
+  font-size: clamp(2rem, 6vw, 4.6rem);
+  font-weight: 700;
+  letter-spacing: var(--tr-display);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.cta-band__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ember);
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-3);
+  justify-content: center;
+  margin-top: var(--s-2);
+}
+
+/* ------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .mcard__media img,
+  .mcard__media video,
+  .pmock__slide,
+  .flow__step,
+  .flow__arrow {
+    transition: none;
+  }
+  .status i {
+    animation: none;
+  }
+  .flow__step,
+  .flow__arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   App interface simulation
+   Drawn rather than photographed, so the screens look like real
+   products instead of a stock picture of somebody's home screen.
+   ------------------------------------------------------------ */
+
+.appui {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  font-size: clamp(5.5px, 0.92vw, 8.5px);
+  background: #0b0b0e;
+  color: #e9e7e3;
+  overflow: hidden;
+}
+
+.appui--light {
+  background: #f4f2ee;
+  color: #14141a;
+}
+
+.appui__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 3.2em 1.6em 1em;
+}
+
+.appui__top b {
+  font-size: 1.7em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.appui__top i {
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 50%;
+  background: linear-gradient(140deg, var(--ember), #b8340c);
+  flex: none;
+}
+
+.appui__body {
+  display: grid;
+  align-content: start;
+  gap: 1em;
+  padding: 0 1.6em;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.appui__hero {
+  display: grid;
+  gap: 0.5em;
+  padding: 1.4em;
+  border-radius: 1.4em;
+  background: linear-gradient(150deg, var(--ember), #c9390e);
+  color: #fff;
+}
+
+.appui__hero small {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.82;
+}
+
+.appui__hero b {
+  font-size: 2.6em;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.appui__hero span {
+  font-size: 1.05em;
+  opacity: 0.9;
+}
+
+.appui__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7em;
+}
+
+.appui__tile {
+  display: grid;
+  gap: 0.3em;
+  padding: 1em;
+  border-radius: 1em;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.appui--light .appui__tile {
+  background: rgba(12, 12, 15, 0.055);
+}
+
+.appui__tile small {
+  font-size: 0.95em;
+  opacity: 0.6;
+}
+
+.appui__tile b {
+  font-size: 1.7em;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.appui__row {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  padding: 0.85em 1em;
+  border-radius: 0.9em;
+  background: rgba(255, 255, 255, 0.045);
+  font-size: 1.1em;
+}
+
+.appui--light .appui__row {
+  background: rgba(12, 12, 15, 0.045);
+}
+
+.appui__row i {
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 0.65em;
+  background: rgba(255, 92, 43, 0.25);
+  flex: none;
+}
+
+.appui__row span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.appui__row u {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  text-decoration: none;
+  opacity: 0.55;
+  flex: none;
+}
+
+/* A miniature bar chart, so a dashboard screen has a shape. */
+.appui__chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4em;
+  height: 7em;
+  padding: 1em;
+  border-radius: 1em;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.appui--light .appui__chart {
+  background: rgba(12, 12, 15, 0.045);
+}
+
+.appui__chart i {
+  flex: 1;
+  height: calc(var(--v) * 1%);
+  border-radius: 0.25em;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.appui--light .appui__chart i {
+  background: rgba(12, 12, 15, 0.16);
+}
+
+.appui__chart i:nth-last-child(-n + 3) {
+  background: var(--ember);
+}
+
+.appui__tabs {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.6em;
+  padding: 1.1em 1.4em 1.9em;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.appui--light .appui__tabs {
+  border-top-color: rgba(12, 12, 15, 0.1);
+}
+
+.appui__tabs i {
+  width: 2em;
+  height: 2em;
+  border-radius: 0.6em;
+  background: currentColor;
+  opacity: 0.25;
+}
+
+.appui__tabs i:first-child {
+  background: var(--ember);
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------
+   Platform chips — Instagram / Facebook
+   ------------------------------------------------------------ */
+
+.plat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.55em 1em;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule);
+  font-size: var(--t-mini);
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.plat svg {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+}
+
+/* ------------------------------------------------------------
+   2D versus 3D — the comparison that carries the Website page
+   ------------------------------------------------------------ */
+
+.versus {
+  display: grid;
+  gap: var(--s-3);
+}
+
+@media (min-width: 860px) {
+  .versus {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.versus__panel {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--ink-2);
+  aspect-ratio: 4 / 3.4;
+  isolation: isolate;
+}
+
+.versus__panel video,
+.versus__panel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.4s var(--ease-out);
+}
+
+.versus__panel:not(.versus__panel--3d):hover video,
+.versus__panel:not(.versus__panel--3d):hover img {
+  transform: scale(1.06);
+}
+
+/* The 3D panel demonstrates depth rather than describing it: the
+   media itself turns toward the pointer. */
+.versus__panel--3d {
+  perspective: 900px;
+}
+
+.versus__panel--3d video,
+.versus__panel--3d img {
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1.1);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.versus__hint {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ember);
+  opacity: 0;
+  transition: opacity var(--d-base) var(--ease-out);
+}
+
+.versus__panel--3d:hover .versus__hint {
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .versus__hint {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .versus__panel--3d video,
+  .versus__panel--3d img {
+    transform: scale(1.02);
+    transition: none;
+  }
+}
+
+.versus__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 10, 0.2) 0%,
+    rgba(8, 8, 10, 0.1) 40%,
+    rgba(8, 8, 10, 0.92) 100%
+  );
+}
+
+.versus__label {
+  position: absolute;
+  z-index: 2;
+  inset: auto var(--s-3) var(--s-3);
+  display: grid;
+  gap: 0.4rem;
+}
+
+.versus__dim {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: var(--tr-mega);
+  line-height: 0.82;
+  color: var(--paper);
+}
+
+.versus__dim em {
+  font-style: italic;
+  color: var(--ember);
+}
+
+.versus__panel p {
+  font-size: var(--t-mini);
+  line-height: 1.55;
+  color: rgba(245, 243, 239, 0.78);
+  max-width: 38ch;
+}

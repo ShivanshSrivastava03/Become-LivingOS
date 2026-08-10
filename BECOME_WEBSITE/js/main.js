@@ -284,12 +284,21 @@
   function videoLayers() {
     if (M.reduced) return;
 
-    [
+    var specs = [
       { id: "heroVideo", src: "assets/video/hero.mp4" },
       { id: "finaleVideo", src: "assets/video/finale.mp4" }
-    ].forEach(function (spec) {
+    ];
+
+    /* Any <video data-src> anywhere behaves the same way: it stays
+       a still until it is nearly on screen, then quietly takes over. */
+    qsa("video[data-src]").forEach(function (v) {
+      if (!v.id) v.id = "v" + Math.random().toString(36).slice(2, 9);
+      specs.push({ id: v.id, src: v.getAttribute("data-src") });
+    });
+
+    specs.forEach(function (spec) {
       var v = document.getElementById(spec.id);
-      if (!v) return;
+      if (!v || !spec.src) return;
 
       var still = v.parentNode ? v.parentNode.querySelector("img") : null;
 
@@ -302,7 +311,10 @@
       });
 
       v.addEventListener("error", function () {
-        v.remove();
+        /* Only remove it if a still can take its place — otherwise
+           the poster is the last thing holding the panel together. */
+        if (still) v.remove();
+        else v.removeAttribute("src");
       });
 
       /* Only attempt once the section is close to view. */
@@ -351,9 +363,15 @@
   }
 
   function start() {
-    /* Content first — nothing below depends on motion running. */
+    /* Chrome first: every page has a nav and a footer. */
+    safe("chrome-render", function () {
+      window.CHROME.render();
+    });
+
+    /* Then whichever body of content this page carries. */
     safe("render", function () {
-      window.SECTIONS.renderAll();
+      if (window.SECTIONS) window.SECTIONS.renderAll();
+      if (window.PAGES) window.PAGES.init();
     });
 
     safe("nav", navBehaviour);

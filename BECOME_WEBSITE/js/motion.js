@@ -202,6 +202,23 @@ window.MOTION = (function () {
       return;
     }
 
+    /* The observer deliberately ignores the bottom tenth of the screen,
+       which is fine for content you scroll to and wrong for content that
+       is already on the first screen. Anything above the fold at start-up
+       is revealed outright, so a hero button can never stay invisible. */
+    nodes = nodes.filter(function (n) {
+      if (n.classList.contains("is-seen")) return false;
+      var r = n.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0 && r.top < window.innerHeight) {
+        if (r.top + (window.pageYOffset || 0) < window.innerHeight) {
+          n.classList.add("is-seen");
+          return false;
+        }
+      }
+      return true;
+    });
+    if (!nodes.length) return;
+
     if (!revealObserver) {
       revealObserver = new IntersectionObserver(
         function (entries) {
@@ -622,23 +639,6 @@ window.MOTION = (function () {
 
   /* ---------- counters -------------------------------------- */
 
-  function countUp(node, to, suffix, ms) {
-    if (reduced) {
-      node.textContent = to + (suffix || "");
-      return;
-    }
-    var start = null;
-    var dur = ms || 1400;
-    function step(ts) {
-      if (!start) start = ts;
-      var p = clamp((ts - start) / dur, 0, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      node.textContent = Math.round(to * eased) + (suffix || "");
-      if (p < 1) window.requestAnimationFrame(step);
-    }
-    window.requestAnimationFrame(step);
-  }
-
   return {
     qs: qs,
     qsa: qsa,
@@ -666,7 +666,6 @@ window.MOTION = (function () {
     initMagnetic: initMagnetic,
     initSurfaceLight: initSurfaceLight,
     initCursor: initCursor,
-    initTilt: initTilt,
-    countUp: countUp
+    initTilt: initTilt
   };
 })();

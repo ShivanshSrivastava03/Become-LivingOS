@@ -12,7 +12,7 @@
   min-height: 100svh;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr;
   overflow: hidden;
   background: var(--void);
   padding-top: var(--nav-h);
@@ -86,7 +86,9 @@
   display: grid;
   align-content: center;
   gap: var(--s-4);
-  padding-block: var(--s-6) var(--s-5);
+  /* The lower padding reserves the strip the scroll cue sits in, so
+     the buttons can never collide with it. */
+  padding-block: var(--s-5) clamp(5rem, 11vh, 8rem);
   width: 100%;
   max-width: var(--shell);
   margin-inline: auto;
@@ -165,19 +167,22 @@ body.is-booted .hero__line--fixed > span {
   transition-delay: calc(var(--c) * 16ms);
 }
 
-/* Supporting sentence + actions */
+/* Supporting sentence + actions.
+   The rail below the hero is gone, so the composition is balanced
+   by letting this block breathe instead. */
 .hero__support {
   display: grid;
-  gap: var(--s-4);
+  gap: clamp(1.75rem, 3.2vh, 2.75rem);
   max-width: 46rem;
+  margin-top: clamp(1rem, 3vh, 2.5rem);
 }
 
 .hero__lede {
   font-size: clamp(1.02rem, 1.5vw, 1.3rem);
-  line-height: 1.5;
+  line-height: 1.55;
   font-weight: 350;
   color: rgba(245, 243, 239, 0.82);
-  max-width: 40ch;
+  max-width: 42ch;
   text-wrap: pretty;
 }
 
@@ -188,44 +193,12 @@ body.is-booted .hero__line--fixed > span {
   gap: var(--s-2) var(--s-3);
 }
 
-/* Bottom meta rail */
-.hero__rail {
-  position: relative;
-  z-index: 3;
-  border-top: 1px solid var(--rule-soft);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.hero__rail-inner {
-  width: 100%;
-  max-width: var(--shell);
-  margin-inline: auto;
-  padding: var(--s-3) var(--gutter);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-4);
-}
-
-.hero__facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-2) var(--s-5);
-  font-family: var(--font-mono);
-  font-size: var(--t-label);
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--ash);
-}
-
-.hero__facts b {
-  color: var(--paper);
-  font-weight: 500;
-}
-
-/* Scroll cue */
+/* Scroll cue — pinned to the bottom edge now the rail is gone. */
 .hero__cue {
+  position: absolute;
+  z-index: 3;
+  right: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.75rem);
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
@@ -235,6 +208,11 @@ body.is-booted .hero__line--fixed > span {
   text-transform: uppercase;
   color: var(--ash);
   flex: none;
+  transition: color var(--d-fast) var(--ease-out);
+}
+
+.hero__cue:hover {
+  color: var(--paper);
 }
 
 .hero__cue-track {
@@ -266,11 +244,8 @@ body.is-booted .hero__line--fixed > span {
 }
 
 @media (max-width: 760px) {
-  .hero__facts {
+  .hero__cue span:last-child {
     display: none;
-  }
-  .hero__rail-inner {
-    justify-content: center;
   }
 }
 
@@ -344,34 +319,10 @@ body.is-booted .hero__line--fixed > span {
   overflow: hidden;
 }
 
+/* One column now the introductory aside has gone. */
 .manifesto__grid {
   display: grid;
   gap: var(--s-5);
-}
-
-@media (min-width: 980px) {
-  .manifesto__grid {
-    grid-template-columns: 200px minmax(0, 1fr);
-    gap: var(--s-6);
-  }
-}
-
-.manifesto__aside {
-  align-self: start;
-}
-
-@media (min-width: 980px) {
-  .manifesto__aside {
-    position: sticky;
-    top: calc(var(--nav-h) + 3rem);
-  }
-}
-
-.manifesto__aside p {
-  margin-top: var(--s-3);
-  font-size: var(--t-mini);
-  color: var(--fg-dim);
-  max-width: 24ch;
 }
 
 .manifesto__text {
@@ -412,12 +363,6 @@ body.is-booted .hero__line--fixed > span {
   font-weight: 600;
   letter-spacing: var(--tr-tight);
   line-height: 1;
-}
-
-.manifesto__need span {
-  font-size: var(--t-mini);
-  color: var(--fg-dim);
-  max-width: 30ch;
 }
 
 .manifesto__close {
@@ -657,9 +602,12 @@ body.is-booted .hero__line--fixed > span {
   border-top: 1px solid var(--rule-soft);
 }
 
+/* Every row is a link to its own page, not an accordion. */
 .sol {
   position: relative;
+  display: block;
   border-bottom: 1px solid var(--rule-soft);
+  color: var(--fg);
 }
 
 .sol__head {
@@ -674,6 +622,13 @@ body.is-booted .hero__line--fixed > span {
   transition: color var(--d-fast) var(--ease-out);
 }
 
+.sol__text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
 .sol__num {
   font-family: var(--font-mono);
   font-size: var(--t-label);
@@ -685,11 +640,19 @@ body.is-booted .hero__line--fixed > span {
 }
 
 .sol__name {
-  flex: 1;
+  display: block;
   font-size: clamp(1.4rem, 2.9vw, 2.35rem);
   font-weight: 600;
   letter-spacing: var(--tr-tight);
   line-height: 1.05;
+  transition: transform 0.55s var(--ease-out), color var(--d-base) var(--ease-out);
+}
+
+.sol__line {
+  display: block;
+  font-size: var(--t-mini);
+  line-height: 1.5;
+  color: var(--fg-dim);
   transition: transform 0.55s var(--ease-out), color var(--d-base) var(--ease-out);
 }
 
@@ -725,7 +688,8 @@ body.is-booted .hero__line--fixed > span {
   transform: scaleX(1);
 }
 
-.sol.is-active .sol__name {
+.sol.is-active .sol__name,
+.sol.is-active .sol__line {
   transform: translateX(6px);
 }
 
@@ -733,66 +697,26 @@ body.is-booted .hero__line--fixed > span {
   color: var(--ember);
 }
 
+.sol.is-active .sol__line {
+  color: rgba(245, 243, 239, 0.82);
+}
+
 .sol.is-active .sol__mark {
   background: var(--ember);
   border-color: var(--ember);
   color: #fff;
-  transform: rotate(90deg);
+  transform: translate(2px, -2px);
 }
 
-.sol__panel {
-  overflow: hidden;
-  height: 0;
-  transition: height 0.6s var(--ease-out);
-}
-
-.sol__panel-inner {
-  padding: 0 0 var(--s-4) calc(2.2em + var(--s-3));
-  display: grid;
-  gap: var(--s-3);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s var(--ease-out) 0.08s,
-    transform 0.5s var(--ease-out) 0.08s;
-}
-
-.sol.is-active .sol__panel-inner {
-  opacity: 1;
-  transform: none;
-}
-
-.sol__copy {
-  color: var(--fg-dim);
-  max-width: 46ch;
-  font-size: var(--t-mini);
-  line-height: 1.62;
-}
-
-.sol__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.sol__tag {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.45em 0.85em;
-  border-radius: var(--r-pill);
-  border: 1px solid var(--rule);
-  color: var(--fg-dim);
-}
-
-/* Media shown only inside the accordion on small screens. */
-.sol__mobile-media {
+/* Below the two-column breakpoint the shared stage is hidden, so
+   each row carries its own picture instead. */
+.sol__thumb {
   display: block;
-  margin-top: var(--s-2);
+  margin: 0 0 var(--s-4);
 }
 
 @media (min-width: 1040px) {
-  .sol__mobile-media {
+  .sol__thumb {
     display: none;
   }
 }
@@ -1052,33 +976,40 @@ body.is-booted .hero__line--fixed > span {
   }
 }
 
-.console__body {
+/* --- The showreel: six capabilities, carried by real footage --- */
+
+.showreel {
   display: grid;
-  min-height: 430px;
+  min-height: 340px;
 }
 
 @media (min-width: 900px) {
-  .console__body {
-    grid-template-columns: 232px minmax(0, 1fr);
+  .showreel {
+    grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
   }
 }
 
-.console__nav {
+/* Rail of capability names. A horizontal strip on phones,
+   a vertical index once there is room for it. */
+.showreel__rail {
   display: flex;
   gap: 2px;
   padding: var(--s-2);
   overflow-x: auto;
   border-bottom: 1px solid var(--rule-soft);
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.console__nav::-webkit-scrollbar {
+.showreel__rail::-webkit-scrollbar {
   display: none;
 }
 
 @media (min-width: 900px) {
-  .console__nav {
+  .showreel__rail {
     flex-direction: column;
+    justify-content: center;
+    gap: 4px;
     overflow: visible;
     border-bottom: 0;
     border-right: 1px solid var(--rule-soft);
@@ -1086,250 +1017,204 @@ body.is-booted .hero__line--fixed > span {
   }
 }
 
-.console__tab {
+.showreel__tab {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.7rem;
   padding: 0.7rem 0.85rem;
   border-radius: var(--r-sm);
-  font-size: var(--t-mini);
-  font-weight: 450;
+  text-align: left;
   color: var(--ash);
   white-space: nowrap;
+  flex: none;
   transition: background-color var(--d-fast) var(--ease-out),
     color var(--d-fast) var(--ease-out);
 }
 
-.console__tab:hover {
+@media (min-width: 900px) {
+  .showreel__tab {
+    white-space: normal;
+  }
+}
+
+.showreel__tab:hover {
   background: rgba(255, 255, 255, 0.05);
   color: var(--paper);
 }
 
-.console__tab[aria-selected="true"] {
+.showreel__tab.is-on {
   background: rgba(255, 92, 43, 0.13);
   color: var(--paper);
 }
 
-.console__tab i {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0.35;
-  flex: none;
-}
-
-.console__tab[aria-selected="true"] i {
-  background: var(--ember);
-  opacity: 1;
-}
-
-.console__view {
-  position: relative;
-  padding: clamp(1.1rem, 3vw, 2rem);
-  min-height: 380px;
-}
-
-.console__panel {
-  display: none;
-  animation: panel-in 0.55s var(--ease-out) both;
-}
-
-.console__panel.is-on {
-  display: block;
-}
-
-@keyframes panel-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-    filter: blur(5px);
-  }
-}
-
-.console__panel-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--s-2);
-  margin-bottom: var(--s-3);
-  padding-bottom: var(--s-3);
-  border-bottom: 1px solid var(--rule-soft);
-}
-
-.console__panel-head h3 {
-  font-size: var(--t-md);
-  font-weight: 600;
-  letter-spacing: var(--tr-tight);
-}
-
-.console__panel-head p {
-  font-size: var(--t-mini);
-  color: var(--ash);
-  max-width: 44ch;
-}
-
-/* --- capability grid --- */
-
-.cap-grid {
-  position: relative;
-  z-index: 1;
-  margin-top: var(--s-6);
-  display: grid;
-  gap: var(--s-2);
-  grid-template-columns: minmax(0, 1fr);
-}
-
-@media (min-width: 640px) {
-  .cap-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* Nine capabilities divide cleanly into three. */
-@media (min-width: 1000px) {
-  .cap-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.cap {
-  position: relative;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--s-3);
-  min-height: 250px;
-  padding: var(--s-3);
-  border-radius: var(--r-lg);
-  border: 1px solid var(--rule-soft);
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.012)
-  );
-  overflow: hidden;
-  transition: border-color var(--d-base) var(--ease-out),
-    transform var(--d-base) var(--ease-out),
-    background-color var(--d-base) var(--ease-out);
-}
-
-/* Pointer-tracked warm light on each card. */
-.cap::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0;
-  background: radial-gradient(
-    260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(255, 92, 43, 0.15),
-    transparent 62%
-  );
-  transition: opacity 0.4s var(--ease-out);
-  pointer-events: none;
-}
-
-.cap:hover {
-  border-color: rgba(255, 92, 43, 0.42);
-  transform: translateY(-4px);
-}
-
-.cap:hover::before {
-  opacity: 1;
-}
-
-.cap > * {
-  position: relative;
-  z-index: 1;
-}
-
-.cap__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-2);
-}
-
-.cap__idx {
+.showreel__idx {
   font-family: var(--font-mono);
   font-size: var(--t-label);
   letter-spacing: 0.1em;
   color: var(--ash-dim);
+  flex: none;
+  transition: color var(--d-fast) var(--ease-out);
 }
 
-.cap__pill {
-  font-family: var(--font-mono);
-  font-size: 0.5875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 0.4em 0.7em;
-  border-radius: var(--r-pill);
-  border: 1px solid var(--rule);
-  color: var(--ash);
+.showreel__tab.is-on .showreel__idx {
+  color: var(--ember);
 }
 
-.cap__viz {
-  position: relative;
-  border-radius: var(--r-md);
-  background: rgba(8, 8, 10, 0.5);
-  border: 1px solid var(--rule-soft);
-  overflow: hidden;
-  min-height: 118px;
+.showreel__label {
   display: grid;
+  gap: 0.15rem;
+  min-width: 0;
 }
 
-.cap__foot h3 {
-  font-size: var(--t-sm);
-  font-weight: 600;
-  letter-spacing: var(--tr-snug);
-  margin-bottom: 0.28rem;
-}
-
-.cap__foot p {
+.showreel__label b {
   font-size: var(--t-mini);
-  color: var(--ash);
-  line-height: 1.5;
+  font-weight: 550;
+  letter-spacing: var(--tr-snug);
+  color: inherit;
 }
 
-/* --- AI outcome strip --- */
+/* The one-line promise only has room in the vertical rail. */
+.showreel__label > span {
+  display: none;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--ash-dim);
+}
 
-.ai__outcomes {
+@media (min-width: 900px) {
+  .showreel__label > span {
+    display: block;
+  }
+}
+
+/* Auto-advance readout under the active name. */
+.showreel__bar {
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.35rem;
+  height: 1px;
+  background: var(--rule);
+  opacity: 0;
+  overflow: hidden;
+}
+
+.showreel__tab.is-on .showreel__bar {
+  opacity: 1;
+}
+
+.showreel__bar i {
+  display: block;
+  height: 100%;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.showreel__tab.is-on .showreel__bar i {
+  animation: reel-run 6s linear forwards;
+}
+
+@keyframes reel-run {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* The stage. Videos stack and cross-fade; the poster is always
+   present underneath, so a blocked autoplay still looks right. */
+.showreel__stage {
+  position: relative;
+  min-height: 260px;
+  background: var(--void);
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .showreel__stage {
+    min-height: 460px;
+  }
+}
+
+.showreel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.8s var(--ease-out), transform 1.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.showreel__slide.is-on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.showreel__still,
+.showreel__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showreel__video {
+  z-index: 1;
+}
+
+.showreel__grade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.32) 0%,
+      rgba(8, 8, 10, 0.05) 38%,
+      rgba(8, 8, 10, 0.86) 100%
+    ),
+    radial-gradient(90% 70% at 85% 5%, rgba(255, 92, 43, 0.2), transparent 60%);
+}
+
+.showreel__cap {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1.1rem, 3vw, 2.2rem);
+  right: clamp(1.1rem, 3vw, 2.2rem);
+  bottom: clamp(1.1rem, 3vw, 2rem);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.showreel__cap b {
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 650;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.02;
+  color: var(--paper);
+}
+
+.showreel__cap > span {
+  font-size: var(--t-mini);
+  color: rgba(245, 243, 239, 0.76);
+  max-width: 40ch;
+}
+
+.ai__more {
   position: relative;
   z-index: 1;
-  margin-top: var(--s-6);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--rule-soft);
-  display: grid;
-  gap: var(--s-4);
+  margin-top: var(--s-5);
 }
 
-@media (min-width: 760px) {
-  .ai__outcomes {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (prefers-reduced-motion: reduce) {
+  .showreel__tab.is-on .showreel__bar i {
+    animation: none;
+    transform: scaleX(1);
   }
-}
-
-@media (min-width: 1100px) {
-  .ai__outcomes {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  .showreel__slide {
+    transition: opacity 0.2s linear;
+    transform: none;
   }
-}
-
-.ai__outcome {
-  display: grid;
-  gap: 0.45rem;
-  align-content: start;
-}
-
-.ai__outcome b {
-  font-size: var(--t-sm);
-  font-weight: 600;
-  letter-spacing: var(--tr-snug);
-}
-
-.ai__outcome span {
-  font-size: var(--t-mini);
-  color: var(--ash);
-  line-height: 1.5;
 }

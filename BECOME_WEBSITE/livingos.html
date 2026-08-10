@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Become LivingOS — an intelligent OS for living spaces</title>
+<meta name="description" content="Become LivingOS brings property operations, residents, payments and intelligence into one connected system. In development.">
+<meta name="theme-color" content="#08080a">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Become.">
+<meta property="og:title" content="Become LivingOS — an intelligent OS for living spaces">
+<meta property="og:description" content="Become LivingOS brings property operations, residents, payments and intelligence into one connected system. In development.">
+<meta property="og:image" content="assets/video/livingos-hero.jpg">
+
+<link rel="icon" href="assets/Become..png" type="image/png">
+<link rel="apple-touch-icon" href="assets/Become..png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700;1,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/chrome.css">
+<link rel="stylesheet" href="css/sections-a.css">
+<link rel="stylesheet" href="css/sections-b.css">
+<link rel="stylesheet" href="css/pages.css">
+
+<script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+</head>
+
+<body data-page="sub" data-nav="livingos.html">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ════ BOOT ════════════════════════════════════════════════ -->
+<div class="boot" id="boot" role="status" aria-label="Loading">
+  <div class="boot__inner">
+    <div class="boot__word" aria-hidden="true">
+      <span style="--i:0ms">B</span><span style="--i:55ms">e</span><span style="--i:110ms">c</span><span style="--i:165ms">o</span><span style="--i:220ms">m</span><span style="--i:275ms">e</span><span style="--i:330ms">.</span>
+    </div>
+    <div class="boot__bar"><i id="bootBar"></i></div>
+    <div class="boot__meta">
+      <span>Loading</span>
+      <span id="bootPct">0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CHROME ══════════════════════════════════════════════ -->
+<div class="grain" aria-hidden="true"></div>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__ring"><span class="cursor__label" id="cursorLabel">Drag</span></div>
+  <div class="cursor__dot"></div>
+</div>
+
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="Become. — home">
+      <img class="nav__logo" src="assets/Become..png" alt="Become." width="140" height="26">
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <span class="nav__pill" id="navPill" aria-hidden="true"></span>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn nav__cta" href="index.html#contact" data-cta data-magnetic>
+        <span data-cta-label>Start a conversation →</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" type="button"
+              aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true" data-native-scroll>
+  <div class="menu__bg" aria-hidden="true"></div>
+  <div></div>
+  <nav class="menu__body" id="menuBody" aria-label="Mobile"></nav>
+  <div class="menu__foot">
+    <span>Technology that transforms businesses.</span>
+    <a class="link" href="index.html#contact" data-cta data-menu-close>
+      <span data-cta-label>Start a conversation →</span>
+    </a>
+  </div>
+</div>
+
+<div class="page">
+<main id="main">
+
+<!-- ════ HERO ════════════════════════════════════════════════ -->
+<section class="phero" id="top">
+  <div class="phero__media" data-parallax="0.12">
+    <video class="" playsinline muted loop preload="none" poster="assets/video/livingos-hero.jpg" data-src="assets/video/livingos-hero.mp4" aria-hidden="true"></video>
+  </div>
+  <div class="phero__veil" aria-hidden="true"></div>
+  <div class="phero__body">
+    <a class="crumb" href="index.html#solutions" data-reveal="fade">← 05 · Solutions</a>
+    <span class="status" data-reveal="fade"><i aria-hidden="true"></i> In development</span>
+    <h1 class="phero__title" data-reveal="rise">Become <em>LivingOS</em></h1>
+    <p class="phero__sub" data-reveal="fade" style="--reveal-delay:120ms">
+      An intelligent operating system for modern living spaces.
+    </p>
+    <div class="phero__actions" data-reveal="fade" style="--reveal-delay:200ms">
+      <a class="btn" href="index.html#contact" data-magnetic>
+        <span class="btn__dot" aria-hidden="true"></span><span>Talk to us →</span>
+      </a>
+      <a class="btn btn--ghost" href="#product" data-magnetic><span>See the product ↓</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PRODUCT SHOWCASE ════════════════════════════════════ -->
+<section class="section is-light products" id="product">
+  <div class="shell">
+    <div class="band__head">
+      <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">01</span> The product</p>
+      <h2 class="band__title" data-reveal="rise">Rooms, residents, money and operations — <em>in one place.</em></h2>
+    </div>
+
+    <div class="showcase" data-reveal="scale">
+      <div class="showcase__inner">
+        <div class="device" id="device">
+          <div class="device__screen" id="deviceScreen">
+            <div class="device__glass">
+              <div class="os" id="osUi"></div>
+            </div>
+          </div>
+          <div class="device__base"></div>
+          <div class="phone" aria-hidden="true">
+            <div class="phone__glass">
+              <div class="phone__notch"></div>
+              <div class="os-m" id="osMobile"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flist flist--3" style="margin-top:var(--s-6)" data-reveal="fade">
+      <div class="fitem"><b>Dashboard</b><span>The state of the property, without asking anyone.</span></div>
+      <div class="fitem"><b>Rooms and occupancy</b><span>Every room, bed and booking in one view.</span></div>
+      <div class="fitem"><b>Billing and payments</b><span>Rent, dues and collections that reconcile.</span></div>
+      <div class="fitem"><b>Operations</b><span>Housekeeping, maintenance and staff tasks, routed.</span></div>
+      <div class="fitem"><b>Residents</b><span>Requests, payments and notices in one thread.</span></div>
+      <div class="fitem"><b>Reports</b><span>The month, closed without a spreadsheet.</span></div>
+    </div>
+
+    <p class="note" style="margin-top:var(--s-4)" data-reveal="fade">
+      Interface shown is a working preview. LivingOS is in active development and
+      the features below describe where the product is going.
+    </p>
+  </div>
+</section>
+
+<!-- ════ INTELLIGENCE BUILT IN ═══════════════════════════════ -->
+<section class="section" id="intelligence">
+  <div class="shell">
+    <div class="band__head">
+      <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">02</span> Intelligence built in</p>
+      <h2 class="band__title" data-reveal="rise">More than a <em>management system.</em></h2>
+    </div>
+    <div class="flist flist--3" data-reveal="fade">
+      <div class="fitem"><b>AI Agents</b><span>Work that gets done without being assigned.</span></div>
+      <div class="fitem"><b>Workflows</b><span>Rules that move things along on their own.</span></div>
+      <div class="fitem"><b>AI Analytics</b><span>What the numbers actually mean this week.</span></div>
+      <div class="fitem"><b>Custom Dashboards</b><span>The view each role needs, and no more.</span></div>
+      <div class="fitem"><b>Future Predictions</b><span>Occupancy and cash, forecast early enough to act.</span></div>
+      <div class="fitem"><b>Mobile App</b><span>The whole property, in a pocket.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CORE CAPABILITIES ═══════════════════════════════════ -->
+<section class="section" id="capabilities" style="background:var(--ink)">
+  <div class="shell">
+    <div class="band__head">
+      <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">03</span> Core capabilities</p>
+      <h2 class="band__title" data-reveal="rise">Five things it <em>runs.</em></h2>
+    </div>
+    <div class="flist flist--5" data-reveal="fade">
+      <div class="fitem"><b>Rooms</b><span>Manage rooms, beds and occupancy.</span></div>
+      <div class="fitem"><b>Billing</b><span>Track rent, payments and dues.</span></div>
+      <div class="fitem"><b>Operations</b><span>Manage daily property operations.</span></div>
+      <div class="fitem"><b>Residents</b><span>Keep residents connected.</span></div>
+      <div class="fitem"><b>Staff</b><span>Manage responsibilities and workflows.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ MOBILE CONNECTIVITY ═════════════════════════════════ -->
+<section class="section" id="mobile">
+  <div class="shell">
+    <div class="split">
+      <div style="display:grid;justify-items:center" data-reveal="scale">
+        <div class="pmock" style="width:clamp(190px,26vw,270px)">
+          <div class="pmock__screen"><span class="pmock__notch" aria-hidden="true"></span>
+            <div class="appui">
+              <div class="appui__top"><b>Riverside</b><i></i></div>
+              <div class="appui__body">
+                <div class="appui__hero"><small>Your room</small><b>214</b><span>Rent paid · next due 1 Sep</span></div>
+                <div class="appui__row"><i></i><span>Laundry request</span><u>Open</u></div>
+                <div class="appui__row"><i></i><span>Wi-Fi reset · 3F</span><u>Done</u></div>
+                <div class="appui__row"><i></i><span>Invoice #4471</span><u>Paid</u></div>
+                <div class="appui__row"><i></i><span>Notice · water cut 10am</span><u>New</u></div>
+              </div>
+              <div class="appui__tabs"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="split__body">
+        <p class="split__num" data-reveal="fade">04 — Mobile connectivity</p>
+        <h2 class="split__title" data-reveal="rise">Residents in the loop.</h2>
+        <p class="split__copy" data-reveal="fade">
+          A companion app planned alongside the platform, so the people living in
+          the building are not the last to know.
+        </p>
+        <div class="flist flist--2" style="border:0;padding:0" data-reveal="fade" style="--reveal-delay:120ms">
+          <div class="fitem"><b>Requests</b><span>Raised, tracked and closed.</span></div>
+          <div class="fitem"><b>Payments</b><span>Rent and dues, settled in the app.</span></div>
+          <div class="fitem"><b>Notifications</b><span>Only what actually matters.</span></div>
+          <div class="fitem"><b>Communication</b><span>One thread with the property.</span></div>
+          <div class="fitem"><b>Updates</b><span>Notices everyone actually sees.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ BUILT FOR ═══════════════════════════════════════════ -->
+<section class="section" id="spaces" style="background:var(--ink)">
+  <div class="shell">
+    <div class="band__head">
+      <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">05</span> Built for modern living spaces</p>
+      <h2 class="band__title" data-reveal="rise">Where LivingOS <em>belongs.</em></h2>
+    </div>
+    <div class="mgrid mgrid--3">
+      <article class="mcard" data-reveal="fade">
+        <div class="mcard__media"><img src="assets/img/ext/hostel.jpg" alt="A hostel dormitory" loading="lazy" decoding="async"></div>
+        <div class="mcard__veil" aria-hidden="true"></div>
+        <div class="mcard__body">
+          <span class="mcard__num">01</span>
+          <h3 class="mcard__name">Hostels</h3>
+          <p class="mcard__note">Beds, dorms and turnover that never stops.</p>
+        </div>
+      </article>
+      <article class="mcard" data-reveal="fade">
+        <div class="mcard__media"><img src="assets/img/ext/realestate.jpg" alt="A modern house exterior" loading="lazy" decoding="async"></div>
+        <div class="mcard__veil" aria-hidden="true"></div>
+        <div class="mcard__body">
+          <span class="mcard__num">02</span>
+          <h3 class="mcard__name">PGs</h3>
+          <p class="mcard__note">Long stays, monthly rent, small teams.</p>
+        </div>
+      </article>
+      <article class="mcard" data-reveal="fade">
+        <div class="mcard__media"><img src="assets/img/ext/hotel.jpg" alt="A hotel lobby" loading="lazy" decoding="async"></div>
+        <div class="mcard__veil" aria-hidden="true"></div>
+        <div class="mcard__body">
+          <span class="mcard__num">03</span>
+          <h3 class="mcard__name">Hotels</h3>
+          <p class="mcard__note">Front desk, housekeeping and revenue.</p>
+        </div>
+      </article>
+      <article class="mcard" data-reveal="fade">
+        <div class="mcard__media"><img src="assets/img/ext/student.jpg" alt="Students in a shared room" loading="lazy" decoding="async"></div>
+        <div class="mcard__veil" aria-hidden="true"></div>
+        <div class="mcard__body">
+          <span class="mcard__num">04</span>
+          <h3 class="mcard__name">Student housing</h3>
+          <p class="mcard__note">Hundreds of residents, one academic year.</p>
+        </div>
+      </article>
+      <article class="mcard" data-reveal="fade">
+        <div class="mcard__media"><img src="assets/img/ext/city.jpg" alt="A city skyline at night" loading="lazy" decoding="async"></div>
+        <div class="mcard__veil" aria-hidden="true"></div>
+        <div class="mcard__body">
+          <span class="mcard__num">05</span>
+          <h3 class="mcard__name">Managed living spaces</h3>
+          <p class="mcard__note">Multiple buildings under one operator.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="bloom" style="width:640px;height:640px;top:-220px;left:50%;transform:translateX(-50%)" aria-hidden="true"></div>
+  <div class="shell cta-band__inner">
+    <h2 class="cta-band__title" data-reveal="rise">Interested in <em>LivingOS?</em></h2>
+    <p class="prose" data-reveal="fade" style="max-width:46ch">It is being built to bring property operations, residents, payments and intelligence into one connected system. Tell us about your property.</p>
+    <div class="cta-band__actions" data-reveal="fade">
+      <a class="btn" href="index.html#contact" data-magnetic>
+        <span class="btn__dot" aria-hidden="true"></span><span>Talk to us →</span>
+      </a>
+        <a class="btn btn--ghost" href="index.html#solutions" data-magnetic><span>Back to Solutions</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ════ FOOTER ══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img class="footer__logo" src="assets/Become..png" alt="Become." width="150" height="28">
+        <p class="footer__tag">Technology that transforms businesses.</p>
+        <a class="link" href="index.html#contact" data-cta style="justify-self:start">
+          <span data-cta-label>Start a conversation →</span>
+        </a>
+      </div>
+
+      <nav class="footer__col" aria-label="Product">
+        <h3>Product</h3>
+        <ul id="footProduct"></ul>
+      </nav>
+      <nav class="footer__col" aria-label="Solutions">
+        <h3>Solutions</h3>
+        <ul id="footSolutions"></ul>
+      </nav>
+      <nav class="footer__col" aria-label="Company">
+        <h3>Company</h3>
+        <ul id="footCompany"></ul>
+      </nav>
+      <nav class="footer__col" aria-label="WhatsApp">
+        <h3>WhatsApp</h3>
+        <ul>
+          <li><a href="#" data-whatsapp>Message us on WhatsApp →</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <span>&copy; <span id="year">2026</span> Become. All rights reserved.</span>
+      <nav class="footer__legal" aria-label="Legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+      </nav>
+    </div>
+
+    <p class="footer__mark" aria-hidden="true">Become.</p>
+  </div>
+</footer>
+</div>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M8 13V3m0 0L3.5 7.5M8 3l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<script src="js/data.js"></script>
+<script src="js/motion.js"></script>
+<script src="js/chrome.js"></script>
+<script src="js/os-ui.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

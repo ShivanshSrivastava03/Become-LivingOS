@@ -329,6 +329,11 @@ body.menu-open .nav {
   opacity: 1;
 }
 
+/* On a dedicated page the pill rests on that page's own link. */
+.nav__pill.is-parked {
+  opacity: 1;
+}
+
 .nav__actions {
   display: flex;
   align-items: center;
@@ -492,36 +497,50 @@ body.menu-open .menu__link {
    Footer
    ------------------------------------------------------------ */
 
+/* A concise closing navigation layer, not another content
+   section: tighter rhythm, four short link columns. */
 .footer {
   position: relative;
   background: var(--void);
   color: var(--paper);
-  padding-top: var(--s-7);
-  padding-bottom: var(--s-4);
+  padding-top: var(--s-5);
+  padding-bottom: var(--s-3);
   overflow: hidden;
 }
 
 .footer__grid {
   display: grid;
-  gap: var(--s-6);
-  padding-bottom: var(--s-6);
+  gap: var(--s-4);
+  padding-bottom: var(--s-4);
 }
 
-@media (min-width: 860px) {
+@media (min-width: 620px) {
   .footer__grid {
-    grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 0.85fr));
-    gap: var(--s-4);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .footer__grid {
+    grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(0, 0.8fr));
+    gap: var(--s-3);
   }
 }
 
 .footer__brand {
   display: grid;
-  gap: var(--s-3);
+  gap: var(--s-2);
   align-content: start;
 }
 
+@media (max-width: 619px) {
+  .footer__brand {
+    margin-bottom: var(--s-2);
+  }
+}
+
 .footer__logo {
-  height: 34px;
+  height: 26px;
   width: auto;
 }
 
@@ -538,11 +557,11 @@ body.menu-open .menu__link {
   letter-spacing: var(--tr-label);
   text-transform: uppercase;
   color: var(--ash-dim);
-  margin-bottom: var(--s-3);
+  margin-bottom: var(--s-2);
 }
 
 .footer__col li + li {
-  margin-top: 0.7rem;
+  margin-top: 0.5rem;
 }
 
 .footer__col a {
@@ -564,7 +583,7 @@ body.menu-open .menu__link {
   gap: var(--s-2) var(--s-4);
   align-items: center;
   justify-content: space-between;
-  padding-top: var(--s-4);
+  padding-top: var(--s-3);
   border-top: 1px solid var(--rule-soft);
   font-family: var(--font-mono);
   font-size: var(--t-label);
@@ -586,7 +605,7 @@ body.menu-open .menu__link {
 /* Oversized wordmark bleeding off the bottom of the page. */
 .footer__mark {
   position: relative;
-  margin-top: var(--s-5);
+  margin-top: var(--s-4);
   margin-bottom: -0.22em;
   font-size: clamp(4rem, 21vw, 20rem);
   font-weight: 800;
