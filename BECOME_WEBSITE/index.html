@@ -191,13 +191,16 @@
       </h2>
 
       <div class="manifesto__break">
-        <div class="manifesto__need" data-reveal="fade">
+        <div class="manifesto__need" data-n="01" data-reveal="rise">
+          <i aria-hidden="true">01</i>
           <b>Clarity</b>
         </div>
-        <div class="manifesto__need" data-reveal="fade" style="--reveal-delay:110ms">
+        <div class="manifesto__need" data-n="02" data-reveal="rise" style="--reveal-delay:110ms">
+          <i aria-hidden="true">02</i>
           <b>Speed</b>
         </div>
-        <div class="manifesto__need" data-reveal="fade" style="--reveal-delay:220ms">
+        <div class="manifesto__need" data-n="03" data-reveal="rise" style="--reveal-delay:220ms">
+          <i aria-hidden="true">03</i>
           <b>Growth</b>
         </div>
       </div>
@@ -364,27 +367,28 @@
 
     <!-- The ecosystem -->
     <div class="constellation">
-      <div class="constellation__head">
-        <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">05</span> The ecosystem</p>
-        <h3 class="subhead" data-reveal="rise" style="margin-top:.75rem">
-          One platform. Infinite possibilities.
-        </h3>
-        <p class="prose" data-reveal="fade">
-          AI Agents, Workflows, Dashboards, Analytics, Predictions, and
-          Mobile — all connected through a single intelligent operating system.
-        </p>
-      </div>
-
-      <div class="orbit" id="orbit">
-        <div class="orbit__rings" aria-hidden="true">
-          <span class="orbit__ring"></span>
-          <span class="orbit__ring"></span>
-          <span class="orbit__ring"></span>
+      <div class="constellation__stage">
+        <div class="constellation__head">
+          <p class="eyebrow" data-reveal="fade"><span class="eyebrow__num">05</span> The ecosystem</p>
+          <h3 class="subhead" data-reveal="rise" style="margin-top:.75rem">
+            One platform. Infinite possibilities.
+          </h3>
+          <p class="prose" data-reveal="fade">
+            AI Agents, Workflows, Dashboards, Analytics, Predictions, and
+            Mobile — all connected through a single intelligent operating system.
+          </p>
         </div>
-        <div class="orbit__nodes" id="orbitNodes" aria-hidden="true"></div>
-        <div class="orbit__core" data-reveal="scale">
-          <b>Become<span class="ember-text">.</span></b>
-          <span>LivingOS</span>
+
+        <div class="orbit" id="orbit">
+          <div class="orbit__rings" aria-hidden="true">
+            <span class="orbit__ring"></span>
+            <span class="orbit__ring"></span>
+            <span class="orbit__ring"></span>
+          </div>
+          <div class="orbit__nodes" id="orbitNodes" aria-hidden="true"></div>
+          <div class="orbit__core" data-reveal="scale">
+            <b>LivingOS</b>
+          </div>
         </div>
       </div>
 
@@ -523,8 +527,11 @@
 
   <div class="finale__body">
     <h2 id="finale-h" class="finale__mark" data-reveal="scale">Become<i>.</i></h2>
+    <!-- The wordmark above carries the "Become." — repeating it here
+         made the closing line stutter. Together they still read
+         "Become. What you aspire to be." -->
     <p class="finale__next" data-reveal="rise" style="--reveal-delay:120ms">
-      Become<span class="ember-text">.</span> <em>What you aspire to be.</em>
+      <em>What you aspire to be.</em>
     </p>
     <div class="finale__actions" data-reveal="fade" style="--reveal-delay:220ms">
       <a class="btn finale__btn" href="#solutions" data-magnetic>

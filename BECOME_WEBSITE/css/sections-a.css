@@ -337,32 +337,114 @@ body.is-booted .hero__line--fixed > span {
   margin-top: 0.85em;
 }
 
+/* The three needs. Numbered, ruled and set large, so the middle of
+   the manifesto carries as much weight as the lines around it. */
 .manifesto__break {
   display: grid;
-  gap: var(--s-4);
-  margin-block: var(--s-6);
-  padding-block: var(--s-5);
+  gap: 0;
+  margin-block: var(--s-5);
   border-block: 1px solid var(--rule-soft);
 }
 
 @media (min-width: 860px) {
   .manifesto__break {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--s-5);
   }
 }
 
 .manifesto__need {
+  position: relative;
   display: grid;
-  gap: 0.5rem;
+  gap: var(--s-2);
   align-content: start;
+  padding-block: var(--s-4);
+}
+
+.manifesto__need + .manifesto__need {
+  border-top: 1px solid var(--rule-soft);
+}
+
+@media (min-width: 860px) {
+  .manifesto__need {
+    padding-block: var(--s-5);
+    padding-inline: var(--s-4);
+  }
+
+  .manifesto__need + .manifesto__need {
+    border-top: 0;
+    border-left: 1px solid var(--rule-soft);
+  }
+
+  .manifesto__need:first-child {
+    padding-inline-start: 0;
+  }
+
+  .manifesto__need:last-child {
+    padding-inline-end: 0;
+  }
+}
+
+/* An oversized numeral sitting in the empty half of each column,
+   barely there — it gives the band depth without adding a word. */
+.manifesto__need::before {
+  content: attr(data-n);
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  /* Italic serif leans past its advance width — keep it off the edge. */
+  right: 0.18em;
+  transform: translateY(-52%);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(4.5rem, 11vw, 8.5rem);
+  line-height: 0.8;
+  color: var(--fg);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.manifesto__need > * {
+  position: relative;
+  z-index: 1;
+}
+
+.manifesto__need i {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-style: normal;
+  letter-spacing: var(--tr-label);
+  color: var(--ember);
 }
 
 .manifesto__need b {
-  font-size: var(--t-lg);
+  font-size: clamp(2.3rem, 5.4vw, 3.9rem);
   font-weight: 600;
-  letter-spacing: var(--tr-tight);
+  letter-spacing: var(--tr-display);
   line-height: 1;
+}
+
+/* A rule that draws itself as the cell arrives. */
+.manifesto__need::after {
+  content: "";
+  width: 100%;
+  max-width: 5.5rem;
+  height: 2px;
+  margin-top: var(--s-1);
+  background: linear-gradient(90deg, var(--ember), transparent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--d-slow) var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+.manifesto__need.is-seen::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .manifesto__need::after {
+    transform: none;
+    transition: none;
+  }
 }
 
 .manifesto__close {

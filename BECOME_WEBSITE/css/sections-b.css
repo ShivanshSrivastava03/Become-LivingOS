@@ -685,10 +685,14 @@
   margin-top: var(--s-7);
 }
 
+.constellation__stage {
+  display: grid;
+  gap: var(--s-5);
+}
+
 .constellation__head {
   display: grid;
   gap: var(--s-3);
-  margin-bottom: var(--s-5);
   max-width: 60ch;
 }
 
@@ -700,18 +704,83 @@
   padding-block: var(--s-3);
 }
 
+/* With no room to orbit anything, the core leads and the
+   capabilities read as a list beneath it. */
+@media (max-width: 699px) {
+  .orbit {
+    gap: var(--s-4);
+  }
+
+  .orbit__core {
+    order: -1;
+    border-radius: var(--r-pill);
+    padding: var(--s-3) var(--s-5);
+  }
+
+  .orbit__core::after {
+    inset: -8px;
+  }
+}
+
 @media (min-width: 700px) {
   .orbit {
     display: block;
     aspect-ratio: 1;
-    max-width: 660px;
+    width: min(600px, 100%);
     margin-inline: auto;
   }
 }
 
-@media (min-width: 1100px) {
+/* From here the copy and the orbit share one stage: the rings and the
+   revolving pills travel behind the text, which carries its own soft
+   bed of page colour so it never has to compete with them. */
+@media (min-width: 1024px) {
+  .constellation__stage {
+    gap: 0;
+    align-items: center;
+  }
+
+  .constellation__stage > * {
+    grid-area: 1 / 1;
+  }
+
+  .constellation__head {
+    position: relative;
+    justify-self: start;
+    max-width: 28%;
+  }
+
+  /* The copy sits above the scrim, the scrim above the pills, and
+     the core above all three — so the scrim can only ever swallow a
+     drifting pill, never wash over the planet. */
+  .constellation__head > * {
+    position: relative;
+    z-index: 4;
+  }
+
+  /* Opaque across the whole copy block, fading out in the gap before
+     the core. It paints in the page colour, so it is invisible until
+     something passes behind it. */
+  .constellation__head::before {
+    content: "";
+    position: absolute;
+    z-index: 3;
+    inset: -38% -40% -38% -52%;
+    background: radial-gradient(
+      72% 58% at 28% 50%,
+      var(--bg) 0%,
+      var(--bg) 74%,
+      transparent 96%
+    );
+    pointer-events: none;
+  }
+
+  /* Centred rather than tucked to the right, so the ring always
+     reaches across the copy however wide the shell gets. */
   .orbit {
-    max-width: 760px;
+    justify-self: center;
+    width: min(78%, 880px);
+    margin-inline: 0;
   }
 }
 
@@ -757,7 +826,7 @@
 
 .orbit__core {
   position: relative;
-  z-index: 3;
+  z-index: 5;
   display: grid;
   place-items: center;
   gap: 0.25rem;
@@ -766,7 +835,9 @@
   border-radius: var(--r-lg);
   background: var(--ink);
   color: var(--paper);
-  box-shadow: var(--lift-3);
+  /* Tighter than --lift-3: on paper a wide blur reads as a smudge
+     rather than a shadow. */
+  box-shadow: 0 22px 44px -22px rgba(12, 12, 15, 0.6);
 }
 
 @media (min-width: 700px) {
@@ -784,18 +855,10 @@
 }
 
 .orbit__core b {
-  font-size: var(--t-md);
-  font-weight: 800;
-  font-style: italic;
-  letter-spacing: -0.045em;
-}
-
-.orbit__core span {
-  font-family: var(--font-mono);
-  font-size: var(--t-label);
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--ash);
+  font-size: clamp(1.1rem, 2.1vw, 1.85rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1;
 }
 
 .orbit__core::after {
@@ -1099,7 +1162,31 @@
 
 @media (hover: none) {
   .ind__media img {
-    filter: grayscale(0.15) brightness(0.9);
+    filter: grayscale(0.3) brightness(0.72);
+  }
+}
+
+/* Without hover there is no second state to reveal the caption, and
+   the tiles are short enough that the words sit over the middle of
+   the photograph rather than its darkest edge. Both have to carry
+   themselves at rest. */
+@media (max-width: 899px) {
+  .ind {
+    min-height: 215px;
+  }
+
+  .ind__veil {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.5) 0%,
+      rgba(8, 8, 10, 0.68) 42%,
+      rgba(8, 8, 10, 0.93) 100%
+    );
+  }
+
+  .ind__note {
+    color: rgba(245, 243, 239, 0.78);
+    opacity: 1;
   }
 }
 

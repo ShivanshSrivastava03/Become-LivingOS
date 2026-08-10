@@ -468,6 +468,26 @@
   perspective: 1400px;
 }
 
+/* A phone above its caption — the "who is holding it" columns. */
+.ways__col {
+  display: grid;
+  gap: var(--s-3);
+  justify-items: center;
+  text-align: center;
+}
+
+.ways__col .pmock {
+  width: clamp(150px, 18vw, 200px);
+}
+
+/* Once the three columns stack there is a whole screen to fill, so
+   the phone should not stay at its three-across size. */
+@media (max-width: 619px) {
+  .ways__col .pmock {
+    width: min(64vw, 260px);
+  }
+}
+
 /* Below the tablet breakpoint only the animating phone survives —
    three of them would push the page sideways. */
 @media (max-width: 719px) {
@@ -506,6 +526,15 @@
   background: var(--ink);
 }
 
+/* The interface inside should be sized by the phone that holds it,
+   not by the viewport — a 140px phone and a 250px one must both look
+   like a real device rather than the same UI at two crop levels. */
+@supports (container-type: inline-size) {
+  .pmock__screen {
+    container-type: inline-size;
+  }
+}
+
 .pmock__screen img,
 .pmock__screen video {
   width: 100%;
@@ -523,6 +552,13 @@
   height: 12px;
   border-radius: var(--r-pill);
   background: #0a0a0c;
+}
+
+@supports (container-type: inline-size) {
+  .pmock__notch {
+    top: 3.4cqw;
+    height: 5cqw;
+  }
 }
 
 /* Stacked app screens that cross-fade inside one phone. */
@@ -764,134 +800,372 @@
 
 /* ------------------------------------------------------------
    App interface simulation
-   Drawn rather than photographed, so the screens look like real
+   Drawn rather than photographed, so the screens read as real
    products instead of a stock picture of somebody's home screen.
+   Every measurement is in em off .appui, so a single font-size
+   scales an entire interface with the phone that carries it.
    ------------------------------------------------------------ */
 
 .appui {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
   font-size: clamp(5.5px, 0.92vw, 8.5px);
   background: #0b0b0e;
   color: #e9e7e3;
   overflow: hidden;
+  --app-line: rgba(255, 255, 255, 0.09);
+  --app-fill: rgba(255, 255, 255, 0.055);
+  --app-fill-2: rgba(255, 255, 255, 0.1);
+  --app-dim: rgba(233, 231, 227, 0.55);
+}
+
+@supports (container-type: inline-size) {
+  .appui {
+    font-size: clamp(5px, 3.6cqw, 9px);
+  }
 }
 
 .appui--light {
   background: #f4f2ee;
   color: #14141a;
+  --app-line: rgba(12, 12, 15, 0.1);
+  --app-fill: rgba(12, 12, 15, 0.045);
+  --app-fill-2: rgba(12, 12, 15, 0.085);
+  --app-dim: rgba(20, 20, 26, 0.55);
 }
 
-.appui__top {
+.appui svg {
+  display: block;
+  flex: none;
+}
+
+/* ---- Status bar -------------------------------------------- */
+
+.appui__bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  padding: 3.2em 1.6em 1em;
+  padding: 1em 1.7em 0;
+  font-size: 1.05em;
+  font-weight: 650;
+  letter-spacing: -0.01em;
 }
 
-.appui__top b {
+.appui__stat {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.appui__sig {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.16em;
+  height: 0.95em;
+}
+
+.appui__sig i {
+  width: 0.22em;
+  border-radius: 0.08em;
+  background: currentColor;
+}
+
+.appui__sig i:nth-child(1) { height: 35%; }
+.appui__sig i:nth-child(2) { height: 57%; }
+.appui__sig i:nth-child(3) { height: 79%; }
+.appui__sig i:nth-child(4) { height: 100%; opacity: 0.35; }
+
+.appui__batt {
+  position: relative;
+  width: 1.75em;
+  height: 0.88em;
+  border: 0.12em solid currentColor;
+  border-radius: 0.26em;
+  opacity: 0.9;
+}
+
+.appui__batt::before {
+  content: "";
+  position: absolute;
+  inset: 0.13em;
+  right: 42%;
+  border-radius: 0.07em;
+  background: currentColor;
+}
+
+.appui__batt::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 0.13em;
+  height: 0.36em;
+  margin-left: 0.09em;
+  transform: translateY(-50%);
+  border-radius: 0 0.1em 0.1em 0;
+  background: currentColor;
+}
+
+/* ---- Header ------------------------------------------------- */
+
+.appui__top {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  padding: 1.1em 1.7em 0.9em;
+}
+
+.appui__title {
+  display: grid;
+  gap: 0.15em;
+  flex: 1;
+  min-width: 0;
+}
+
+.appui__title b {
   font-size: 1.7em;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.038em;
+  line-height: 1.05;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.appui__top i {
-  width: 2.4em;
-  height: 2.4em;
+.appui__title small {
+  font-size: 0.98em;
+  color: var(--app-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.appui__avatar {
+  display: grid;
+  place-items: center;
+  width: 2.9em;
+  height: 2.9em;
   border-radius: 50%;
   background: linear-gradient(140deg, var(--ember), #b8340c);
+  color: #fff;
+  font-size: 0.95em;
+  font-weight: 700;
   flex: none;
 }
+
+.appui__ghost {
+  display: grid;
+  place-items: center;
+  width: 2.9em;
+  height: 2.9em;
+  border-radius: 50%;
+  border: 1px solid var(--app-line);
+  background: var(--app-fill);
+  color: inherit;
+  flex: none;
+}
+
+/* A small live dot for "connected" / "online" states. */
+.appui__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.9em;
+  color: var(--app-dim);
+  flex: none;
+}
+
+.appui__live::before {
+  content: "";
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0.25em rgba(74, 222, 128, 0.18);
+}
+
+/* ---- Body --------------------------------------------------- */
 
 .appui__body {
   display: grid;
   align-content: start;
-  gap: 1em;
-  padding: 0 1.6em;
+  gap: 0.8em;
+  padding: 0 1.7em;
   min-height: 0;
   overflow: hidden;
 }
 
+.appui__body--end {
+  align-content: end;
+  padding-bottom: 0.4em;
+}
+
+/* ---- A drawn map: streets, a route, a moving marker --------- */
+
+.appui__map {
+  position: relative;
+  height: 10.5em;
+  border-radius: 1.2em;
+  overflow: hidden;
+  background:
+    linear-gradient(0deg, rgba(255, 92, 43, 0.06), rgba(255, 92, 43, 0.06)),
+    repeating-linear-gradient(0deg, transparent 0 2.4em, var(--app-line) 2.4em 2.52em),
+    repeating-linear-gradient(90deg, transparent 0 2.9em, var(--app-line) 2.9em 3.02em),
+    var(--app-fill);
+}
+
+.appui__map svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.appui__pin {
+  position: absolute;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 0 0.4em rgba(255, 92, 43, 0.22);
+}
+
+/* ---- The ember headline card -------------------------------- */
+
 .appui__hero {
   display: grid;
-  gap: 0.5em;
-  padding: 1.4em;
-  border-radius: 1.4em;
+  gap: 0.35em;
+  padding: 1.25em 1.35em;
+  border-radius: 1.2em;
   background: linear-gradient(150deg, var(--ember), #c9390e);
   color: #fff;
+  box-shadow: 0 1.4em 2.6em -1.5em rgba(255, 92, 43, 0.8);
 }
 
 .appui__hero small {
   font-family: var(--font-mono);
-  font-size: 0.95em;
+  font-size: 0.9em;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   opacity: 0.82;
 }
 
 .appui__hero b {
-  font-size: 2.6em;
+  font-size: 2.4em;
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
   line-height: 1;
 }
 
 .appui__hero span {
-  font-size: 1.05em;
-  opacity: 0.9;
+  font-size: 1.02em;
+  opacity: 0.92;
 }
 
-.appui__cols {
+/* ---- Delivery progress -------------------------------------- */
+
+.appui__track {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7em;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35em;
 }
 
-.appui__tile {
-  display: grid;
-  gap: 0.3em;
-  padding: 1em;
-  border-radius: 1em;
-  background: rgba(255, 255, 255, 0.06);
+.appui__track i {
+  height: 0.35em;
+  border-radius: var(--r-pill);
+  background: var(--app-fill-2);
 }
 
-.appui--light .appui__tile {
-  background: rgba(12, 12, 15, 0.055);
+.appui__track i.is-on {
+  background: var(--ember);
 }
 
-.appui__tile small {
-  font-size: 0.95em;
-  opacity: 0.6;
+.appui__steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4em;
+  font-size: 0.88em;
+  color: var(--app-dim);
 }
 
-.appui__tile b {
-  font-size: 1.7em;
+.appui__steps .is-on {
+  color: var(--ember);
   font-weight: 650;
-  letter-spacing: -0.03em;
 }
+
+/* ---- A person row (courier, guest, staff) ------------------- */
+
+.appui__person {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: 0.85em 0.95em;
+  border-radius: 1em;
+  border: 1px solid var(--app-line);
+  background: var(--app-fill);
+}
+
+.appui__person > div {
+  display: grid;
+  gap: 0.1em;
+  flex: 1;
+  min-width: 0;
+}
+
+.appui__person b {
+  font-size: 1.12em;
+  font-weight: 650;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.appui__person small {
+  font-size: 0.9em;
+  color: var(--app-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.appui__act {
+  display: grid;
+  place-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  background: var(--app-fill-2);
+  flex: none;
+}
+
+.appui__act--go {
+  background: var(--ember);
+  color: #fff;
+}
+
+/* ---- List rows ---------------------------------------------- */
 
 .appui__row {
   display: flex;
   align-items: center;
-  gap: 0.9em;
-  padding: 0.85em 1em;
-  border-radius: 0.9em;
-  background: rgba(255, 255, 255, 0.045);
-  font-size: 1.1em;
-}
-
-.appui--light .appui__row {
-  background: rgba(12, 12, 15, 0.045);
+  gap: 0.8em;
+  padding: 0.8em 0.95em;
+  border-radius: 0.95em;
+  background: var(--app-fill);
+  font-size: 1.06em;
 }
 
 .appui__row i {
-  width: 2.2em;
-  height: 2.2em;
-  border-radius: 0.65em;
-  background: rgba(255, 92, 43, 0.25);
+  display: grid;
+  place-items: center;
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 0.7em;
+  background: var(--app-fill-2);
+  color: var(--ember);
   flex: none;
 }
 
@@ -907,63 +1181,275 @@
   font-family: var(--font-mono);
   font-size: 0.85em;
   text-decoration: none;
-  opacity: 0.55;
+  color: var(--app-dim);
   flex: none;
 }
 
-/* A miniature bar chart, so a dashboard screen has a shape. */
+/* ---- Metric tiles ------------------------------------------- */
+
+.appui__cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65em;
+}
+
+.appui__tile {
+  display: grid;
+  gap: 0.25em;
+  padding: 0.95em 1em;
+  border-radius: 1em;
+  border: 1px solid var(--app-line);
+  background: var(--app-fill);
+}
+
+.appui__tile small {
+  font-size: 0.92em;
+  color: var(--app-dim);
+}
+
+.appui__tile b {
+  font-size: 1.8em;
+  font-weight: 650;
+  letter-spacing: -0.038em;
+  line-height: 1;
+}
+
+.appui__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  color: #4ade80;
+}
+
+.appui__delta--down {
+  color: var(--ember);
+}
+
+/* ---- Chart --------------------------------------------------- */
+
+.appui__graph {
+  display: grid;
+  gap: 0.55em;
+  padding: 0.95em 1em;
+  border-radius: 1em;
+  border: 1px solid var(--app-line);
+  background: var(--app-fill);
+}
+
+.appui__graph > b {
+  font-size: 1.05em;
+  font-weight: 650;
+}
+
 .appui__chart {
   display: flex;
   align-items: flex-end;
-  gap: 0.4em;
-  height: 7em;
-  padding: 1em;
-  border-radius: 1em;
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.appui--light .appui__chart {
-  background: rgba(12, 12, 15, 0.045);
+  gap: 0.35em;
+  height: 6em;
 }
 
 .appui__chart i {
   flex: 1;
   height: calc(var(--v) * 1%);
-  border-radius: 0.25em;
-  background: rgba(255, 255, 255, 0.22);
+  border-radius: 0.28em 0.28em 0.1em 0.1em;
+  background: var(--app-fill-2);
 }
 
-.appui--light .appui__chart i {
-  background: rgba(12, 12, 15, 0.16);
-}
-
-.appui__chart i:nth-last-child(-n + 3) {
+.appui__chart i:nth-last-child(-n + 2) {
   background: var(--ember);
 }
+
+.appui__axis {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  color: var(--app-dim);
+}
+
+/* ---- Four-up quick actions ---------------------------------- */
+
+.appui__quick {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5em;
+}
+
+.appui__quick > div {
+  display: grid;
+  justify-items: center;
+  gap: 0.45em;
+  padding: 0.9em 0.25em;
+  border-radius: 0.9em;
+  border: 1px solid var(--app-line);
+  background: var(--app-fill);
+  font-size: 0.85em;
+  color: var(--app-dim);
+  text-align: center;
+}
+
+.appui__quick svg {
+  color: var(--ember);
+}
+
+/* ---- Conversation ------------------------------------------- */
+
+.appui__msg {
+  max-width: 84%;
+  padding: 0.8em 1em;
+  border-radius: 1.1em 1.1em 1.1em 0.3em;
+  background: var(--app-fill);
+  font-size: 1.05em;
+  line-height: 1.38;
+}
+
+.appui__msg--me {
+  justify-self: end;
+  border-radius: 1.1em 1.1em 0.3em 1.1em;
+  background: linear-gradient(150deg, var(--ember), #d33f11);
+  color: #fff;
+}
+
+.appui__msg small {
+  display: block;
+  margin-top: 0.3em;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  opacity: 0.62;
+}
+
+.appui__mcard {
+  display: grid;
+  gap: 0.25em;
+  margin-top: 0.6em;
+  padding: 0.75em 0.8em;
+  border-radius: 0.75em;
+  background: var(--app-fill-2);
+}
+
+.appui__msg--me .appui__mcard {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.appui__mcard b {
+  font-size: 1.05em;
+  font-weight: 650;
+}
+
+.appui__mcard span {
+  font-size: 0.9em;
+  opacity: 0.86;
+}
+
+.appui__typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  width: max-content;
+  padding: 0.95em 1em;
+  border-radius: 1.1em 1.1em 1.1em 0.3em;
+  background: var(--app-fill);
+}
+
+.appui__typing i {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.3;
+  animation: appui-dot 1.25s var(--ease-in-out) infinite;
+}
+
+.appui__typing i:nth-child(2) { animation-delay: 0.16s; }
+.appui__typing i:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes appui-dot {
+  0%, 62%, 100% { opacity: 0.28; transform: translateY(0); }
+  30% { opacity: 0.95; transform: translateY(-0.22em); }
+}
+
+.appui__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+.appui__chips span {
+  padding: 0.5em 0.85em;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--app-line);
+  font-size: 0.92em;
+  color: var(--app-dim);
+}
+
+.appui__field {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-top: 0.3em;
+  padding: 0.6em 0.6em 0.6em 1.1em;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--app-line);
+  background: var(--app-fill);
+  font-size: 1em;
+  color: var(--app-dim);
+}
+
+.appui__send {
+  display: grid;
+  place-items: center;
+  width: 2.3em;
+  height: 2.3em;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--ember);
+  color: #fff;
+  flex: none;
+}
+
+/* ---- Tab bar ------------------------------------------------- */
 
 .appui__tabs {
+  position: relative;
   display: flex;
   justify-content: space-around;
-  gap: 0.6em;
-  padding: 1.1em 1.4em 1.9em;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 0.4em;
+  padding: 0.85em 1.1em 1.9em;
+  border-top: 1px solid var(--app-line);
 }
 
-.appui--light .appui__tabs {
-  border-top-color: rgba(12, 12, 15, 0.1);
+.appui__tabs > span {
+  display: grid;
+  justify-items: center;
+  gap: 0.3em;
+  font-size: 0.82em;
+  color: var(--app-dim);
 }
 
-.appui__tabs i {
-  width: 2em;
-  height: 2em;
-  border-radius: 0.6em;
+.appui__tabs > span.is-on {
+  color: var(--ember);
+}
+
+/* The home indicator every modern phone draws. */
+.appui__tabs::after {
+  content: "";
+  position: absolute;
+  bottom: 0.65em;
+  left: 50%;
+  width: 30%;
+  height: 0.32em;
+  transform: translateX(-50%);
+  border-radius: var(--r-pill);
   background: currentColor;
-  opacity: 0.25;
+  opacity: 0.3;
 }
 
-.appui__tabs i:first-child {
-  background: var(--ember);
-  opacity: 1;
+@media (prefers-reduced-motion: reduce) {
+  .appui__typing i {
+    animation: none;
+  }
 }
 
 /* ------------------------------------------------------------

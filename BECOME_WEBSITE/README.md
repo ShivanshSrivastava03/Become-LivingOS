@@ -55,12 +55,12 @@ radius system).
 | — | Boot | Typographic load screen, ~1s, skipped under reduced motion |
 | 01 | Hero | Full viewport. `Become` + a transformation word that morphs per-character, over drifting ember footage and a generative particle field |
 | — | Ticker | Two counter-scrolling marquees, nudged by scroll velocity |
-| 01 | Manifesto | Editorial spread on warm white; the statement lights up word by word as you scroll |
+| 01 | Manifesto | Editorial spread on warm white; the statement lights up word by word as you scroll. Clarity / Speed / Growth are numbered and ruled, over a ghosted serif numeral |
 | — | Convergence | 4-screen pinned sequence — nine words scatter, then collapse into **Become.** |
 | 02 | Solutions | Numbered index + sticky media stage. Each row opens its own page |
 | 03 | AI Solutions | A live showcase console: six capabilities, each carried by real footage, auto-advancing |
 | 04 | Products | Become LivingOS in a laptop + phone frame, running a real HTML dashboard |
-| 05 | The ecosystem | Seven capabilities revolving continuously around the LivingOS core |
+| 05 | The ecosystem | Seven capabilities revolving continuously around the LivingOS core. From 1024px the copy and the orbit share one stage — the ring passes *behind* the words, which carry a scrim so a drifting pill is hidden rather than half-legible |
 | 06 | Who We Transform | Parallax mosaic, six kinds of business |
 | 07 | How it goes | Understand / Build / Grow as stacking chapter cards |
 | 08 | Contact | Email, phone, WhatsApp and a validated form |
@@ -75,7 +75,7 @@ route back to Section 05.
 |------|---------|
 | `marketing.html` | Social media handling (Instagram + Facebook), Reels & posts, Documentary |
 | `website.html` | Seven kinds of website, a 2D-versus-3D comparison you can interact with, nine customer categories |
-| `mobile-application.html` | Animated app screens, nine app categories, three ways we build, requirement → app |
+| `mobile-application.html` | Working app interfaces — status bar, live map, chat, dashboards — nine app categories, three ways we build, requirement → app |
 | `ai-solutions.html` | The six AI capabilities, each a full media band with real footage |
 | `livingos.html` | The product, marked **in development**: dashboard, capabilities, mobile app, and where it belongs |
 
@@ -108,13 +108,13 @@ Checked in headless Chromium 151:
 
 - **9 pages** × **4 breakpoints** (390, 834, 1280, 1920) — no horizontal
   overflow, no overlapping cards, no clipped text
-- **283 links** crawled — every internal target resolves to a real file
+- **285 links** crawled — every internal target resolves to a real file
   and a real anchor; no `href="#"` placeholders
 - **0** JavaScript errors, **0** failed requests, **0** missing assets
 - **39** interaction checks — AI showreel tabs and video swapping,
   solution hover previews, revolving orbit, rails, cross-fades,
   scroll flows, form validation, mobile menu, back-to-top
-- **116** content checks against the section-by-section review document
+- **119** content checks against the section-by-section review document
 
 ---
 
