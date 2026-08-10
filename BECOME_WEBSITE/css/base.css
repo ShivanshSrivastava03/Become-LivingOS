@@ -1,0 +1,747 @@
+/* ============================================================
+   BECOME. — Reset, typography, motion primitives, shared parts
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Easing is handled in JS so a deep link can still land
+     instantly. A global smooth scroll-behavior would animate
+     every programmatic jump, including that one. */
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: var(--tr-snug);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+/* Nothing in this site may cause a horizontal scrollbar. */
+html,
+body {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---- Focus: always visible, never ugly --------------------- */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 4px;
+  border-radius: var(--r-xs);
+}
+
+::selection {
+  background: var(--ember);
+  color: #fff;
+}
+
+/* ---- Scrollbar --------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a32;
+  border-radius: 99px;
+  border: 3px solid var(--void);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3d3d48;
+}
+
+/* ============================================================
+   Typography primitives
+   ============================================================ */
+
+.display,
+.mega {
+  font-weight: 700;
+  line-height: 0.87;
+  letter-spacing: var(--tr-display);
+  text-wrap: balance;
+}
+
+.mega {
+  font-size: var(--t-mega);
+  letter-spacing: var(--tr-mega);
+  line-height: 0.82;
+}
+
+.display {
+  font-size: var(--t-display);
+}
+
+.headline {
+  font-size: var(--t-xl);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: var(--tr-display);
+  text-wrap: balance;
+}
+
+.subhead {
+  font-size: var(--t-lg);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: var(--tr-tight);
+}
+
+.lede {
+  font-size: var(--t-md);
+  line-height: 1.42;
+  font-weight: 350;
+  letter-spacing: var(--tr-tight);
+  color: var(--fg);
+  max-width: 26ch;
+  text-wrap: balance;
+}
+
+.prose {
+  color: var(--fg-dim);
+  max-width: 46ch;
+  line-height: 1.62;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.wordmark {
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
+.ember-text {
+  color: var(--ember);
+}
+
+/* The recurring mono eyebrow: 01 — SECTION */
+.eyebrow {
+  display: inline-flex;
+  /* Keeps the rule on the first line when the label wraps. */
+  align-items: flex-start;
+  gap: 0.7em;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  line-height: 1;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  margin-top: 0.45em;
+  background: var(--ember);
+  flex: none;
+}
+
+.eyebrow__num {
+  color: var(--ember);
+}
+
+/* ============================================================
+   Layout primitives
+   ============================================================ */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  background: var(--bg);
+  color: var(--fg);
+  padding-block: var(--section-y);
+  isolation: isolate;
+}
+
+.section--flush {
+  padding-block: 0;
+}
+
+.section__head {
+  display: grid;
+  gap: var(--s-3);
+  margin-bottom: var(--s-6);
+}
+
+@media (min-width: 900px) {
+  .section__head--split {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: end;
+    gap: var(--s-5);
+  }
+}
+
+.rule {
+  height: 1px;
+  background: var(--rule-soft);
+  border: 0;
+  margin: 0;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+.btn {
+  --btn-bg: var(--ember);
+  --btn-fg: #fff;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75em;
+  padding: 1.05em 1.9em;
+  border-radius: var(--r-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: var(--t-mini);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform var(--d-fast) var(--ease-out),
+    box-shadow var(--d-fast) var(--ease-out),
+    background-color var(--d-fast) var(--ease-out);
+}
+
+.btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* A light sweep crosses the button on hover. */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 80%
+  );
+  transform: translateX(-110%);
+  transition: transform 0.75s var(--ease-out);
+}
+
+.btn:hover::after {
+  transform: translateX(110%);
+}
+
+.btn:hover {
+  box-shadow: var(--lift-ember);
+}
+
+.btn:active {
+  transform: scale(0.975);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--fg);
+  border: 1px solid var(--rule);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--surface-2);
+  border-color: var(--fg);
+  box-shadow: none;
+}
+
+.btn--solid-light {
+  --btn-bg: var(--paper);
+  --btn-fg: var(--ink);
+}
+
+.btn__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+  opacity: 0.85;
+}
+
+/* Text link with an animated underline that wipes in. */
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding-block: 0.15em;
+  font-size: var(--t-mini);
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--d-base) var(--ease-out);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.link__arrow {
+  transition: transform var(--d-base) var(--ease-out);
+}
+
+.link:hover .link__arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   Media frames — every image lives in one of these
+   ============================================================ */
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: linear-gradient(150deg, var(--ink-3), var(--ink));
+  isolation: isolate;
+}
+
+.frame::after {
+  /* fine inner hairline keeps media from floating */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--rule-soft);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.frame img,
+.frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Media reveal: blurred + scaled until seen. */
+.frame__media {
+  transform: scale(1.12);
+  filter: blur(16px);
+  opacity: 0;
+  transition: transform 1.5s var(--ease-out), filter 1.2s var(--ease-out),
+    opacity 0.9s var(--ease-out);
+  will-change: transform, filter;
+}
+
+.is-seen .frame__media,
+.frame__media.is-seen {
+  transform: scale(1);
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* Warm grade sits over photography so everything shares one light. */
+.frame--graded::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.1) 0%,
+      rgba(8, 8, 10, 0.62) 100%
+    ),
+    radial-gradient(
+      120% 90% at 70% 0%,
+      rgba(255, 92, 43, 0.16) 0%,
+      transparent 60%
+    );
+}
+
+.frame--ratio-wide {
+  aspect-ratio: 16 / 9;
+}
+.frame--ratio-photo {
+  aspect-ratio: 4 / 3;
+}
+.frame--ratio-square {
+  aspect-ratio: 1 / 1;
+}
+.frame--ratio-tall {
+  aspect-ratio: 3 / 4;
+}
+
+/* Caption strip pinned inside a frame. */
+.frame__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  padding: var(--s-3);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+
+/* ============================================================
+   Motion primitives — driven by js/motion.js
+   ============================================================ */
+
+/* Elements wait for their reveal only when JS is present. */
+.js [data-reveal] {
+  will-change: transform, opacity;
+}
+
+.js [data-reveal="fade"] {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  filter: blur(6px);
+  transition: opacity var(--d-reveal) var(--ease-out),
+    transform var(--d-reveal) var(--ease-out),
+    filter var(--d-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal="rise"] {
+  opacity: 0;
+  transform: translate3d(0, 60px, 0);
+  transition: opacity var(--d-reveal) var(--ease-out),
+    transform var(--d-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal="scale"] {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0) scale(0.965);
+  transition: opacity var(--d-reveal) var(--ease-out),
+    transform var(--d-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal].is-seen {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Line-mask reveal for headlines: each line rises out of a clip. */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.line-mask > span {
+  display: block;
+  transform: translate3d(0, 108%, 0);
+  transition: transform 1.05s var(--ease-out);
+  transition-delay: var(--line-delay, 0ms);
+  will-change: transform;
+}
+
+.is-seen .line-mask > span,
+.line-mask.is-seen > span {
+  transform: none;
+}
+
+/* Word / character split targets. */
+.split-word {
+  display: inline-block;
+  white-space: pre;
+}
+
+.split-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Scroll-linked text that lights up word by word. */
+.lit-text .split-word {
+  color: color-mix(in srgb, var(--fg) 18%, transparent);
+  transition: color 0.42s var(--ease-out);
+}
+
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  .lit-text .split-word {
+    opacity: 0.2;
+  }
+  .lit-text .split-word.is-lit {
+    opacity: 1;
+  }
+}
+
+.lit-text .split-word.is-lit {
+  color: var(--fg);
+}
+
+.lit-text .split-word.is-accent.is-lit {
+  color: var(--ember);
+}
+
+/* ============================================================
+   Ambient decoration
+   ============================================================ */
+
+/* Fine grain layer — sits above everything, costs one repeat. */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 6s steps(5) infinite;
+}
+
+@keyframes grain-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-2%, 3%);
+  }
+  40% {
+    transform: translate(3%, -2%);
+  }
+  60% {
+    transform: translate(-3%, -3%);
+  }
+  80% {
+    transform: translate(2%, 2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Hairline vertical grid that runs the length of the page. */
+.pinstripes {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--rule-soft) 0 1px,
+    transparent 1px calc(100% / 6)
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 18%,
+    #000 82%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 18%,
+    #000 82%,
+    transparent
+  );
+}
+
+/* A soft ember bloom used to warm the corners of dark sections. */
+.bloom {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  background: radial-gradient(
+    circle,
+    rgba(255, 92, 43, 0.5) 0%,
+    rgba(255, 92, 43, 0) 68%
+  );
+}
+
+/* ============================================================
+   Utility
+   ============================================================ */
+
+.u-relative {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--gutter);
+  z-index: 200;
+  padding: 0.9em 1.4em;
+  background: var(--ember);
+  color: #fff;
+  border-radius: var(--r-pill);
+  font-size: var(--t-mini);
+  font-weight: 500;
+  transition: top var(--d-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ============================================================
+   Reduced motion — strip animation, keep the design
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-reveal],
+  .js [data-reveal="fade"],
+  .js [data-reveal="rise"],
+  .js [data-reveal="scale"] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .line-mask > span {
+    transform: none !important;
+  }
+
+  .frame__media {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .grain {
+    animation: none;
+  }
+
+  .lit-text .split-word {
+    color: var(--fg);
+  }
+}

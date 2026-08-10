@@ -1,0 +1,1220 @@
+/* ============================================================
+   BECOME. — Sections A
+   Hero · Ticker · Manifesto · Convergence · Solutions · AI
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   01 — HERO
+   ------------------------------------------------------------ */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+  background: var(--void);
+  padding-top: var(--nav-h);
+}
+
+.hero__stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Photographic base layer, parallaxed and heavily graded. */
+.hero__media {
+  position: absolute;
+  inset: -8% -4%;
+  z-index: 0;
+}
+
+.hero__media img,
+.hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  transform: scale(1.06);
+  animation: hero-drift 26s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1.5%, -1.5%, 0);
+  }
+}
+
+/* Generative ember field. Sits over the photo, under the type. */
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+}
+
+/* Grade + vignette so type always has contrast. */
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(
+      120% 85% at 78% 12%,
+      rgba(255, 92, 43, 0.2) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.86) 0%,
+      rgba(8, 8, 10, 0.4) 34%,
+      rgba(8, 8, 10, 0.72) 72%,
+      var(--void) 100%
+    );
+}
+
+.hero__body {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  align-content: center;
+  gap: var(--s-4);
+  /* The lower padding reserves the strip the scroll cue sits in, so
+     the buttons can never collide with it. */
+  padding-block: var(--s-5) clamp(5rem, 11vh, 8rem);
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* The two-line brand statement: Become / <changing word> */
+.hero__statement {
+  display: grid;
+  gap: 0;
+}
+
+.hero__line {
+  font-size: var(--t-mega);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: var(--tr-mega);
+  line-height: 0.83;
+  color: var(--paper);
+}
+
+.hero__line--fixed {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.05em;
+  margin-bottom: -0.05em;
+}
+
+.hero__line--fixed > span {
+  display: block;
+  transform: translateY(112%);
+  transition: transform 1.2s var(--ease-out) 0.15s;
+}
+
+body.is-booted .hero__line--fixed > span {
+  transform: none;
+}
+
+/* The rotating transformation word. */
+.hero__rotator {
+  position: relative;
+  display: block;
+  height: calc(var(--t-mega) * 0.9);
+  color: var(--ember);
+}
+
+.hero__word {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hero__word .split-char {
+  opacity: 0;
+  transform: translate3d(0, 0.42em, 0) rotateX(-58deg) scale(0.94);
+  filter: blur(9px);
+  transition: opacity 0.5s var(--ease-out), transform 0.72s var(--ease-out),
+    filter 0.5s var(--ease-out);
+  transition-delay: calc(var(--c) * 26ms);
+}
+
+.hero__word.is-in .split-char {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+.hero__word.is-out .split-char {
+  opacity: 0;
+  transform: translate3d(0, -0.34em, 0) rotateX(46deg) scale(0.96);
+  filter: blur(8px);
+  transition-duration: 0.42s;
+  transition-delay: calc(var(--c) * 16ms);
+}
+
+/* Supporting sentence + actions.
+   The rail below the hero is gone, so the composition is balanced
+   by letting this block breathe instead. */
+.hero__support {
+  display: grid;
+  gap: clamp(1.75rem, 3.2vh, 2.75rem);
+  max-width: 46rem;
+  margin-top: clamp(1rem, 3vh, 2.5rem);
+}
+
+.hero__lede {
+  font-size: clamp(1.02rem, 1.5vw, 1.3rem);
+  line-height: 1.55;
+  font-weight: 350;
+  color: rgba(245, 243, 239, 0.82);
+  max-width: 42ch;
+  text-wrap: pretty;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+}
+
+/* Scroll cue — pinned to the bottom edge now the rail is gone. */
+.hero__cue {
+  position: absolute;
+  z-index: 3;
+  right: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.75rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ash);
+  flex: none;
+  transition: color var(--d-fast) var(--ease-out);
+}
+
+.hero__cue:hover {
+  color: var(--paper);
+}
+
+.hero__cue-track {
+  position: relative;
+  width: 1px;
+  height: 34px;
+  background: var(--rule);
+  overflow: hidden;
+}
+
+.hero__cue-track i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: var(--ember);
+  animation: cue-run 2.1s var(--ease-in-out) infinite;
+}
+
+@keyframes cue-run {
+  0% {
+    transform: translateY(-110%);
+  }
+  55%,
+  100% {
+    transform: translateY(260%);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero__cue span:last-child {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   02 — TICKER
+   ------------------------------------------------------------ */
+
+.ticker {
+  position: relative;
+  background: var(--void);
+  border-block: 1px solid var(--rule-soft);
+  padding-block: var(--s-4);
+  overflow: hidden;
+  display: grid;
+  gap: var(--s-2);
+}
+
+.ticker__row {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.ticker__row--b {
+  opacity: 0.42;
+}
+
+.ticker__set {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.4rem, 3vw, 2.6rem);
+  padding-inline: clamp(0.7rem, 1.5vw, 1.3rem);
+  font-size: clamp(1.35rem, 3.4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.15;
+  color: var(--paper);
+  white-space: nowrap;
+}
+
+.ticker__row--b .ticker__item {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 243, 239, 0.5);
+}
+
+@supports not (-webkit-text-stroke: 1px red) {
+  .ticker__row--b .ticker__item {
+    color: rgba(245, 243, 239, 0.4);
+  }
+}
+
+.ticker__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ember);
+  flex: none;
+}
+
+/* ------------------------------------------------------------
+   03 — MANIFESTO (light)
+   ------------------------------------------------------------ */
+
+.manifesto {
+  overflow: hidden;
+}
+
+/* One column now the introductory aside has gone. */
+.manifesto__grid {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.manifesto__text {
+  font-size: clamp(1.65rem, 4.4vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: var(--tr-tight);
+  text-wrap: pretty;
+}
+
+.manifesto__text p + p {
+  margin-top: 0.85em;
+}
+
+.manifesto__break {
+  display: grid;
+  gap: var(--s-4);
+  margin-block: var(--s-6);
+  padding-block: var(--s-5);
+  border-block: 1px solid var(--rule-soft);
+}
+
+@media (min-width: 860px) {
+  .manifesto__break {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-5);
+  }
+}
+
+.manifesto__need {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.manifesto__need b {
+  font-size: var(--t-lg);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 1;
+}
+
+.manifesto__close {
+  font-size: clamp(2rem, 6.5vw, 5rem);
+  font-weight: 600;
+  letter-spacing: var(--tr-display);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.manifesto__close em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ember);
+}
+
+/* ------------------------------------------------------------
+   04 — CONVERGENCE
+   Words drift in space, then collapse into one word.
+   ------------------------------------------------------------ */
+
+.converge {
+  position: relative;
+  background: var(--void);
+  color: var(--paper);
+  height: 420vh;
+}
+
+.converge__pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.converge__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.converge__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.converge__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+      65% 65% at 50% 50%,
+      rgba(8, 8, 10, 0.35) 0%,
+      var(--void) 78%
+    );
+}
+
+.converge__field {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.converge__word {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: clamp(1.15rem, 3.4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 1;
+  white-space: nowrap;
+  color: rgba(245, 243, 239, 0.9);
+  /* --tx/--ty: resting scatter. --p: 0→1 convergence progress. */
+  transform: translate3d(
+      calc(var(--tx) * (1 - var(--p)) - 50%),
+      calc(var(--ty) * (1 - var(--p)) - 50%),
+      0
+    )
+    scale(calc(1 - 0.45 * var(--p)));
+  opacity: calc(1 - var(--p));
+  filter: blur(calc(var(--p) * 7px));
+  will-change: transform, opacity;
+}
+
+.converge__word:nth-child(even) {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 243, 239, 0.62);
+}
+
+@supports not (-webkit-text-stroke: 1px red) {
+  .converge__word:nth-child(even) {
+    color: rgba(245, 243, 239, 0.55);
+  }
+}
+
+.converge__word:nth-child(3n) {
+  color: var(--ember);
+  -webkit-text-stroke: 0;
+}
+
+.converge__core {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  gap: var(--s-3);
+  text-align: center;
+  padding-inline: var(--gutter);
+}
+
+.converge__mark {
+  font-size: var(--t-mega);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: var(--tr-mega);
+  line-height: 0.85;
+  /* --c: 0→1 arrival */
+  opacity: var(--c, 0);
+  transform: scale(calc(0.82 + 0.18 * var(--c)));
+  filter: blur(calc((1 - var(--c)) * 16px));
+  will-change: transform, opacity, filter;
+}
+
+.converge__mark i {
+  font-style: italic;
+  color: var(--ember);
+}
+
+.converge__sub {
+  font-size: var(--t-mini);
+  font-family: var(--font-mono);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ash);
+  opacity: var(--c, 0);
+  transform: translateY(calc((1 - var(--c)) * 18px));
+}
+
+/* A ring of light that tightens as the words converge. */
+.converge__halo {
+  position: absolute;
+  z-index: 2;
+  width: min(74vmin, 620px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 92, 43, 0.28);
+  transform: scale(calc(1.6 - 0.62 * var(--c, 0)));
+  opacity: calc(var(--c, 0) * 0.9);
+  pointer-events: none;
+}
+
+.converge__halo::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 92, 43, 0.16) 0%,
+    transparent 66%
+  );
+  filter: blur(28px);
+}
+
+.converge__progress {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: clamp(1.5rem, 5vh, 3rem);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--ash-dim);
+}
+
+.converge__progress-track {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.converge__progress-track i {
+  position: absolute;
+  inset: 0;
+  background: var(--ember);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+}
+
+/* Short-viewport and no-JS safety: never trap the reader. */
+@media (max-width: 700px) {
+  .converge {
+    height: 300vh;
+  }
+}
+
+/* ------------------------------------------------------------
+   05 — SOLUTIONS
+   A numbered index on the left, a living media pane on the right.
+   ------------------------------------------------------------ */
+
+.solutions {
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.solutions__layout {
+  display: grid;
+  gap: var(--s-5);
+}
+
+@media (min-width: 1040px) {
+  .solutions__layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: var(--s-6);
+    align-items: start;
+  }
+}
+
+.solutions__index {
+  display: grid;
+  border-top: 1px solid var(--rule-soft);
+}
+
+/* Every row is a link to its own page, not an accordion. */
+.sol {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--fg);
+}
+
+.sol__head {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: clamp(1.1rem, 2.4vw, 1.7rem) 0;
+  text-align: left;
+  color: var(--fg);
+  transition: color var(--d-fast) var(--ease-out);
+}
+
+.sol__text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.sol__num {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.1em;
+  color: var(--ash-dim);
+  flex: none;
+  width: 2.2em;
+  transition: color var(--d-base) var(--ease-out);
+}
+
+.sol__name {
+  display: block;
+  font-size: clamp(1.4rem, 2.9vw, 2.35rem);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.05;
+  transition: transform 0.55s var(--ease-out), color var(--d-base) var(--ease-out);
+}
+
+.sol__line {
+  display: block;
+  font-size: var(--t-mini);
+  line-height: 1.5;
+  color: var(--fg-dim);
+  transition: transform 0.55s var(--ease-out), color var(--d-base) var(--ease-out);
+}
+
+.sol__mark {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  color: var(--fg-dim);
+  transition: transform 0.55s var(--ease-out),
+    background-color var(--d-base) var(--ease-out),
+    border-color var(--d-base) var(--ease-out), color var(--d-base) var(--ease-out);
+}
+
+/* A sweep of ember light fills the row from the left when active. */
+.sol::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.sol.is-active::before {
+  transform: scaleX(1);
+}
+
+.sol.is-active .sol__name,
+.sol.is-active .sol__line {
+  transform: translateX(6px);
+}
+
+.sol.is-active .sol__num {
+  color: var(--ember);
+}
+
+.sol.is-active .sol__line {
+  color: rgba(245, 243, 239, 0.82);
+}
+
+.sol.is-active .sol__mark {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: #fff;
+  transform: translate(2px, -2px);
+}
+
+/* Below the two-column breakpoint the shared stage is hidden, so
+   each row carries its own picture instead. */
+.sol__thumb {
+  display: block;
+  margin: 0 0 var(--s-4);
+}
+
+@media (min-width: 1040px) {
+  .sol__thumb {
+    display: none;
+  }
+}
+
+/* The desktop stage: stacked media that cross-fades. */
+.solutions__stage {
+  display: none;
+  position: sticky;
+  top: calc(var(--nav-h) + 2.5rem);
+}
+
+@media (min-width: 1040px) {
+  .solutions__stage {
+    display: block;
+  }
+}
+
+.solutions__pane {
+  position: relative;
+  aspect-ratio: 4 / 3.1;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--ink-2);
+  box-shadow: var(--lift-3);
+}
+
+.solutions__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.85s var(--ease-out), transform 1.3s var(--ease-out);
+}
+
+.solutions__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.solutions__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.solutions__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0) 0%,
+      rgba(8, 8, 10, 0.28) 42%,
+      rgba(8, 8, 10, 0.88) 100%
+    ),
+    radial-gradient(100% 70% at 80% 0%, rgba(255, 92, 43, 0.18), transparent 62%);
+}
+
+.solutions__slide-label {
+  position: absolute;
+  z-index: 2;
+  left: var(--s-4);
+  right: var(--s-4);
+  bottom: var(--s-4);
+  display: grid;
+  gap: 0.3rem;
+  justify-items: start;
+}
+
+.solutions__slide-idx {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  color: var(--ember);
+}
+
+.solutions__slide-label b {
+  font-size: var(--t-lg);
+  font-weight: 600;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.05;
+  color: var(--paper);
+}
+
+.solutions__slide-label > span:last-child {
+  font-size: var(--t-mini);
+  color: rgba(245, 243, 239, 0.74);
+  max-width: 34ch;
+  line-height: 1.45;
+}
+
+.solutions__meter {
+  margin-top: var(--s-3);
+  display: flex;
+  gap: 4px;
+}
+
+.solutions__meter i {
+  flex: 1;
+  height: 2px;
+  background: var(--rule);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.solutions__meter i::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.solutions__meter i.is-on::after {
+  transform: scaleX(1);
+}
+
+/* ------------------------------------------------------------
+   06 — ARTIFICIAL INTELLIGENCE
+   ------------------------------------------------------------ */
+
+.ai {
+  position: relative;
+  background: var(--void);
+  overflow: hidden;
+}
+
+.ai__aura {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.ai__aura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.34;
+}
+
+.ai__aura::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    var(--void) 0%,
+    rgba(8, 8, 10, 0.62) 40%,
+    var(--void) 100%
+  );
+}
+
+.ai__head {
+  position: relative;
+  z-index: 1;
+}
+
+.ai__title {
+  font-size: var(--t-display);
+  font-weight: 700;
+  letter-spacing: var(--tr-display);
+  line-height: 0.94;
+}
+
+.ai__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ember);
+}
+
+/* --- The demo console --- */
+
+.console {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--s-6);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--rule);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.015)
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--lift-3);
+  overflow: hidden;
+}
+
+.console__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-2) var(--s-3);
+  border-bottom: 1px solid var(--rule-soft);
+  background: rgba(8, 8, 10, 0.4);
+}
+
+.console__lights {
+  display: flex;
+  gap: 6px;
+  flex: none;
+}
+
+.console__lights i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ink-4);
+}
+
+.console__lights i:first-child {
+  background: var(--ember);
+}
+
+.console__path {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.09em;
+  color: var(--ash-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.console__status {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ash);
+  flex: none;
+}
+
+.console__status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #46d17f;
+  box-shadow: 0 0 0 0 rgba(70, 209, 127, 0.6);
+  animation: pulse-live 2.4s ease-out infinite;
+}
+
+@keyframes pulse-live {
+  to {
+    box-shadow: 0 0 0 9px rgba(70, 209, 127, 0);
+  }
+}
+
+/* --- The showreel: six capabilities, carried by real footage --- */
+
+.showreel {
+  display: grid;
+  min-height: 340px;
+}
+
+@media (min-width: 900px) {
+  .showreel {
+    grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  }
+}
+
+/* Rail of capability names. A horizontal strip on phones,
+   a vertical index once there is room for it. */
+.showreel__rail {
+  display: flex;
+  gap: 2px;
+  padding: var(--s-2);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--rule-soft);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.showreel__rail::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .showreel__rail {
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    overflow: visible;
+    border-bottom: 0;
+    border-right: 1px solid var(--rule-soft);
+    padding: var(--s-3) var(--s-2);
+  }
+}
+
+.showreel__tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--r-sm);
+  text-align: left;
+  color: var(--ash);
+  white-space: nowrap;
+  flex: none;
+  transition: background-color var(--d-fast) var(--ease-out),
+    color var(--d-fast) var(--ease-out);
+}
+
+@media (min-width: 900px) {
+  .showreel__tab {
+    white-space: normal;
+  }
+}
+
+.showreel__tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--paper);
+}
+
+.showreel__tab.is-on {
+  background: rgba(255, 92, 43, 0.13);
+  color: var(--paper);
+}
+
+.showreel__idx {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: 0.1em;
+  color: var(--ash-dim);
+  flex: none;
+  transition: color var(--d-fast) var(--ease-out);
+}
+
+.showreel__tab.is-on .showreel__idx {
+  color: var(--ember);
+}
+
+.showreel__label {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.showreel__label b {
+  font-size: var(--t-mini);
+  font-weight: 550;
+  letter-spacing: var(--tr-snug);
+  color: inherit;
+}
+
+/* The one-line promise only has room in the vertical rail. */
+.showreel__label > span {
+  display: none;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--ash-dim);
+}
+
+@media (min-width: 900px) {
+  .showreel__label > span {
+    display: block;
+  }
+}
+
+/* Auto-advance readout under the active name. */
+.showreel__bar {
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.35rem;
+  height: 1px;
+  background: var(--rule);
+  opacity: 0;
+  overflow: hidden;
+}
+
+.showreel__tab.is-on .showreel__bar {
+  opacity: 1;
+}
+
+.showreel__bar i {
+  display: block;
+  height: 100%;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.showreel__tab.is-on .showreel__bar i {
+  animation: reel-run 6s linear forwards;
+}
+
+@keyframes reel-run {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* The stage. Videos stack and cross-fade; the poster is always
+   present underneath, so a blocked autoplay still looks right. */
+.showreel__stage {
+  position: relative;
+  min-height: 260px;
+  background: var(--void);
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .showreel__stage {
+    min-height: 460px;
+  }
+}
+
+.showreel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.8s var(--ease-out), transform 1.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.showreel__slide.is-on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.showreel__still,
+.showreel__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showreel__video {
+  z-index: 1;
+}
+
+.showreel__grade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.32) 0%,
+      rgba(8, 8, 10, 0.05) 38%,
+      rgba(8, 8, 10, 0.86) 100%
+    ),
+    radial-gradient(90% 70% at 85% 5%, rgba(255, 92, 43, 0.2), transparent 60%);
+}
+
+.showreel__cap {
+  position: absolute;
+  z-index: 3;
+  left: clamp(1.1rem, 3vw, 2.2rem);
+  right: clamp(1.1rem, 3vw, 2.2rem);
+  bottom: clamp(1.1rem, 3vw, 2rem);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.showreel__cap b {
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 650;
+  letter-spacing: var(--tr-tight);
+  line-height: 1.02;
+  color: var(--paper);
+}
+
+.showreel__cap > span {
+  font-size: var(--t-mini);
+  color: rgba(245, 243, 239, 0.76);
+  max-width: 40ch;
+}
+
+.ai__more {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--s-5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showreel__tab.is-on .showreel__bar i {
+    animation: none;
+    transform: scaleX(1);
+  }
+  .showreel__slide {
+    transition: opacity 0.2s linear;
+    transform: none;
+  }
+}
