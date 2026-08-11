@@ -1,0 +1,641 @@
+/* ============================================================
+   BECOME. — Mobile
+   Loaded last, and every rule lives inside a max-width query, so
+   the desktop composition is untouched by design: this file can
+   only ever change what a phone sees.
+
+   Three things it is for:
+     1. Rhythm. The desktop section padding is a third of a phone
+        screen at each end; on a phone that reads as dead space
+        rather than air.
+     2. Density. Lists that are one column because there was no
+        room at 1440px have plenty of room at 390px once the type
+        is sized for a phone. Two columns halve the scroll.
+     3. Edges. Nothing may be clipped by the viewport — the
+        headline rotator in particular sets the longest word in
+        the site at --t-mega.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Rhythm — the single biggest lever on total scroll length
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  :root {
+    /* 13vh top *and* bottom is a quarter of a phone screen spent
+       on nothing. Still generous, no longer a scroll tax. */
+    --section-y: clamp(3rem, 7vh, 4.5rem);
+
+    --s-5: 2.25rem;
+    --s-6: 3rem;
+    --s-7: 4rem;
+    --s-8: 5.5rem;
+  }
+
+  /* A phone holds less line, so the measure has to give first. */
+  .prose {
+    max-width: 60ch;
+  }
+}
+
+/* ------------------------------------------------------------
+   Edges — nothing gets clipped, nothing gets cut
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  /* --t-mega is set from vw, which sizes to the viewport rather
+     than to the words. The rotator holds the longest string on
+     the site ("extraordinary.") on one nowrap line, so the scale
+     has to be chosen by that word, not by the box. */
+  :root {
+    --t-mega: clamp(2.6rem, 13.4vw, 17rem);
+  }
+
+  /* Long unbroken strings — an address, a URL, a compound noun in
+     a narrow column — wrap rather than push past the gutter. */
+  .prose,
+  .split__copy,
+  .fitem span,
+  .products__use span,
+  .mcard__note,
+  .ind__note,
+  .note,
+  .contact__detail dd,
+  .footer__col a {
+    overflow-wrap: anywhere;
+  }
+
+  /* Grid and flex children default to min-content width, which is
+     what lets a long word shove a whole row sideways. */
+  .split__body,
+  .fitem,
+  .products__use,
+  .contact__detail,
+  .footer__col {
+    min-width: 0;
+  }
+}
+
+/* ------------------------------------------------------------
+   01 — Hero
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .hero__body {
+    gap: var(--s-3);
+    padding-block: var(--s-4) clamp(4rem, 9vh, 6rem);
+  }
+
+  .hero__support {
+    gap: 1.6rem;
+    margin-top: 1rem;
+  }
+
+  .hero__actions {
+    /* Two full-width taps beat two half-width ones on a phone. */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+    width: min(100%, 22rem);
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------
+   02 — Ticker
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .ticker {
+    padding-block: var(--s-3);
+  }
+}
+
+/* ------------------------------------------------------------
+   03 — Manifesto
+   Three numbered needs, stacked. Number above word is a desktop
+   composition; on a phone it costs a line each for no gain, so
+   the number moves beside the word and the band loses a third of
+   its height without losing a character.
+   ------------------------------------------------------------ */
+
+@media (max-width: 859px) {
+  .manifesto__grid {
+    gap: var(--s-4);
+  }
+
+  .manifesto__break {
+    margin-block: var(--s-4);
+  }
+
+  .manifesto__need {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: baseline;
+    column-gap: var(--s-3);
+    row-gap: 0.35rem;
+    padding-block: var(--s-3);
+  }
+
+  /* The ember rule belongs under the word, not under the number. */
+  .manifesto__need::after {
+    grid-column: 2;
+    max-width: 4rem;
+  }
+
+  .manifesto__need b {
+    font-size: clamp(1.9rem, 8.5vw, 3rem);
+  }
+
+  /* The ghost numeral was sized for a tall empty column. */
+  .manifesto__need::before {
+    font-size: clamp(3.2rem, 15vw, 5rem);
+  }
+}
+
+/* ------------------------------------------------------------
+   04 — Convergence
+   A pinned scene: its height *is* its duration. 300vh on a phone
+   is three screens of scrolling to arrive at one word.
+   ------------------------------------------------------------ */
+
+@media (max-width: 700px) {
+  .converge {
+    height: 215vh;
+  }
+}
+
+/* ------------------------------------------------------------
+   05 — Solutions
+   Five rows, each carrying its own picture below the two-column
+   breakpoint. The pictures are the payload; a shallower crop
+   reads more editorial and returns most of a screen.
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .sol__thumb {
+    margin-bottom: var(--s-3);
+  }
+
+  .sol__thumb.frame--ratio-wide {
+    aspect-ratio: 16 / 8;
+  }
+
+  .sol__head {
+    gap: var(--s-2);
+    padding-block: 1rem;
+  }
+
+  .sol__num {
+    width: 1.9em;
+  }
+}
+
+/* ------------------------------------------------------------
+   06 — AI showreel
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .console {
+    margin-top: var(--s-5);
+  }
+
+  .showreel {
+    min-height: 0;
+  }
+
+  .showreel__stage {
+    min-height: 300px;
+  }
+}
+
+/* ------------------------------------------------------------
+   07 — Products
+   ------------------------------------------------------------ */
+
+@media (max-width: 759px) {
+  /* Four short label/line pairs. One column made a ladder of
+     them; two makes a block. */
+  .products__rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-3) var(--s-4);
+    margin-top: var(--s-4);
+    padding-top: var(--s-4);
+  }
+}
+
+@media (max-width: 760px) {
+  .showcase {
+    padding: var(--s-3) var(--s-3) 0;
+  }
+
+  .products__statement {
+    margin-top: var(--s-5);
+  }
+
+  .products__cta {
+    margin-top: var(--s-4);
+  }
+
+  .constellation {
+    margin-top: var(--s-6);
+  }
+
+  /* The laptop interface is drawn in em off a single font-size, so
+     at the desktop floor of 5px a 290px-wide phone screen renders
+     it as texture rather than as a product.
+
+     Scaling up alone makes it worse: the left card stacks a chart,
+     a legend and a 48-cell room grid, which already overflowed the
+     16/10 screen at 5px and cut the activity feed in half. The
+     room grid is the block that a phone can least read and least
+     afford, so it goes; what is left then fits whole, at a size
+     you can actually make out. */
+  .os__rooms,
+  .os__card-top:has(+ .os__rooms) {
+    display: none;
+  }
+
+  .os__chart {
+    height: 6.2em;
+  }
+
+  /* The feed is the taller of the two cards and so sets the height
+     of the row. Four events on a phone is one more than the panel
+     can hold; three still reads as a live feed. */
+  .os__feed .os__row:nth-child(n + 4) {
+    display: none;
+  }
+
+  .os {
+    font-size: clamp(5px, 1.42vw, 8px);
+  }
+}
+
+/* Under ~430px the screen is short enough that the cards' own
+   padding is the last thing standing between the feed and the
+   bottom edge. Tightened here only, so the interface arrives
+   whole rather than half-drawn. */
+@media (max-width: 429px) {
+  .os__card {
+    padding: 0.75em;
+    gap: 0.6em;
+  }
+
+  .os__feed {
+    gap: 0.4em;
+  }
+
+  .os__row {
+    padding: 0.38em 0.5em;
+  }
+
+  .os__row i {
+    width: 1.4em;
+    height: 1.4em;
+  }
+
+  .os__chart {
+    height: 5.6em;
+  }
+}
+
+/* ------------------------------------------------------------
+   09 — Industries mosaic
+   ------------------------------------------------------------ */
+
+@media (max-width: 620px) {
+  .mosaic {
+    gap: var(--s-2);
+  }
+
+  .ind {
+    min-height: 196px;
+  }
+
+  .ind__body {
+    inset: auto 0.85rem 0.85rem;
+    gap: 0.3rem;
+  }
+
+  .ind__note {
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+}
+
+/* ------------------------------------------------------------
+   11 — Why / chapters
+   Three stacked panels, each over two-thirds of a screen tall.
+   ------------------------------------------------------------ */
+
+@media (max-width: 899px) {
+  .chapter {
+    min-height: clamp(320px, 44vh, 430px);
+  }
+
+  .chapter__body {
+    gap: var(--s-2);
+    padding: var(--s-3);
+  }
+
+  .chapter__word {
+    font-size: clamp(2.6rem, 13vw, 4.5rem);
+  }
+}
+
+/* ------------------------------------------------------------
+   13 — Contact
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .contact__details {
+    margin-top: var(--s-4);
+    padding-top: var(--s-3);
+  }
+
+  .contact__socials {
+    margin-top: var(--s-3);
+  }
+
+  .form {
+    gap: var(--s-2);
+  }
+
+  .field textarea {
+    min-height: 96px;
+  }
+
+  .form__foot {
+    gap: var(--s-2);
+  }
+
+  /* The submit is the point of the section — give it the width. */
+  .form__foot .btn {
+    width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------
+   14 — Finale
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .finale {
+    min-height: 74svh;
+    min-height: 74vh;
+    padding-block: var(--s-6);
+  }
+
+  .finale__body {
+    gap: var(--s-3);
+  }
+
+  .finale__actions {
+    margin-top: var(--s-2);
+  }
+}
+
+/* ------------------------------------------------------------
+   Page hero (the five solution pages)
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .phero {
+    min-height: 70svh;
+    min-height: 70vh;
+    padding-top: calc(var(--nav-h) + var(--s-4));
+    padding-bottom: var(--s-5);
+  }
+
+  .phero__body {
+    gap: var(--s-2);
+  }
+
+  .phero__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+    width: min(100%, 22rem);
+    margin-top: var(--s-2);
+  }
+
+  .phero__actions .btn {
+    width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------
+   Page furniture — splits, feature lists, card grids
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+  .band__head {
+    gap: var(--s-2);
+    margin-bottom: var(--s-4);
+  }
+
+  .split {
+    gap: var(--s-3);
+  }
+
+  .split__body {
+    gap: var(--s-2);
+  }
+
+  .split__copy {
+    line-height: 1.55;
+  }
+
+  /* 16/10.5 is a desktop crop sitting beside a column of words.
+     Stacked above them it is simply height. */
+  .split__media {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--r-lg);
+  }
+}
+
+@media (max-width: 699px) {
+  /* The whole point of the exercise: label + one line is a narrow
+     thing, and two of them fit across a phone comfortably. Every
+     feature list on the site halves in height here, with the same
+     words in it. */
+  .flist--2,
+  .flist--3,
+  .flist--5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-3) var(--s-4);
+  }
+
+  .flist {
+    padding-top: var(--s-3);
+  }
+
+  .fitem {
+    gap: 0.3rem;
+  }
+
+  .fitem b {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .fitem span {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 619px) {
+  /* Media cards go two-up, exactly as the homepage mosaic already
+     does. :has() keeps this to grids of pictures — the phone
+     mock-up columns have their own treatment below. */
+  .mgrid--2:has(.mcard),
+  .mgrid--3:has(.mcard),
+  .mgrid--4:has(.mcard) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-2);
+  }
+
+  /* min-height must go. A grid item's automatic minimum size is
+     derived through the aspect ratio, so `min-height: 220px` on a
+     4/4.8 box becomes a 183px minimum *width* and blows the track
+     past 1fr — a horizontal scrollbar at 360px. The ratio alone
+     gives the card its height. */
+  .mgrid:has(.mcard) .mcard {
+    aspect-ratio: 4 / 5.4;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .mgrid:has(.mcard) .mcard__body {
+    inset: auto 0.8rem 0.85rem;
+    gap: 0.25rem;
+  }
+
+  .mgrid:has(.mcard) .mcard__name {
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .mgrid:has(.mcard) .mcard__note {
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  /* A phone above its caption is a three-across composition. With
+     one column it becomes a very tall stack, so the phone turns
+     and stands beside its words instead. */
+  .ways__col {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    justify-items: start;
+    text-align: left;
+    gap: var(--s-3);
+  }
+
+  .ways__col .pmock {
+    width: min(34vw, 138px);
+  }
+
+  /* !important only because the caption carries an inline
+     `justify-items:center` in the markup, which a stylesheet
+     cannot outrank any other way. */
+  .ways__col .fitem {
+    justify-items: start !important;
+    text-align: left;
+  }
+}
+
+/* Card rails: one card per screen wastes the second half of it. */
+@media (max-width: 619px) {
+  .rail > * {
+    width: min(62vw, 260px);
+  }
+}
+
+/* ------------------------------------------------------------
+   Website page — the 2D / 3D comparison
+   ------------------------------------------------------------ */
+
+@media (max-width: 619px) {
+  .versus__panel {
+    aspect-ratio: 4 / 3;
+  }
+
+  .versus__dim {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+}
+
+/* ------------------------------------------------------------
+   Closing CTA bands
+   ------------------------------------------------------------ */
+
+@media (max-width: 619px) {
+  .cta-band__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.6rem;
+    width: min(100%, 22rem);
+  }
+
+  .cta-band__actions .btn {
+    width: 100%;
+  }
+}
+
+/* ------------------------------------------------------------
+   Footer
+   Five stacked blocks is the longest run of nothing on the page.
+   The brand keeps the full width; the four link columns pair up.
+   ------------------------------------------------------------ */
+
+@media (max-width: 619px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-3) var(--s-4);
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .footer__col h3 {
+    margin-bottom: 0.55rem;
+  }
+
+  .footer__mark {
+    /* It bleeds off the bottom by design; on a phone the stroke
+       weight is what makes it read as a mark rather than noise. */
+    margin-top: var(--s-3);
+  }
+}
+
+/* ------------------------------------------------------------
+   Very small phones (320–360px)
+   ------------------------------------------------------------ */
+
+@media (max-width: 400px) {
+  .flist--2,
+  .flist--3,
+  .flist--5 {
+    gap: var(--s-3) var(--s-3);
+  }
+
+  .fitem span {
+    font-size: 0.75rem;
+  }
+
+  .mgrid:has(.mcard) .mcard__name {
+    font-size: 0.94rem;
+  }
+
+  .tag {
+    font-size: 0.58rem;
+    padding: 0.4em 0.7em;
+  }
+}

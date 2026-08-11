@@ -101,8 +101,20 @@
   gap: 0;
 }
 
+/* --t-mega is sized from the viewport, but the rotator sets the
+   longest string on the site ("extraordinary.") on one nowrap line,
+   so the viewport is the wrong thing to ask. At ~5.95em wide that
+   word ran off the right edge at every width between 768px and
+   ~1730px. This caps the scale at whatever still lands on screen:
+   the room from the text's own left edge to the far edge, over the
+   width of the longest word. Between those two points it trims the
+   type by about 4%; everywhere else min() returns --t-mega and
+   nothing moves at all. */
 .hero__line {
-  font-size: var(--t-mega);
+  --hero-room: calc(
+    100vw - max((100vw - var(--shell)) / 2, 0px) - var(--gutter) - 16px
+  );
+  font-size: min(var(--t-mega), var(--hero-room) / 5.95);
   font-weight: 800;
   font-style: italic;
   letter-spacing: var(--tr-mega);
@@ -131,7 +143,9 @@ body.is-booted .hero__line--fixed > span {
 .hero__rotator {
   position: relative;
   display: block;
-  height: calc(var(--t-mega) * 0.9);
+  /* em, so the reserved band follows the capped size above rather
+     than the uncapped --t-mega it used to be measured against. */
+  height: 0.9em;
   color: var(--ember);
 }
 
